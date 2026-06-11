@@ -2,11 +2,16 @@
 #include <Adafruit_MCP4728.h>
 #include <SPI.h>
 
+// ==========================================
+// CONFIGURATION FLAGS
+// ==========================================
+#define DEBUG_MODE 0  // 1 = Debugging (Spammy Serial), 0 = Production (Silent/Clean Protocol)
+
 // --- Pin Definitions ---
 const int ENCODER_A = 2;
 const int ENCODER_B = 3;
 const int ENCODER_SW = 4;
-const int FAN_PWM_PIN = 5;  // Tied to TCA0 WO2 (Split Mode Low Byte)
+const int FAN_PWM_PIN = 5;
 
 // Status LEDs
 const int LED_CH1 = 6;
@@ -34,34 +39,17 @@ String inputString = "";
 bool stringComplete = false;
 
 void init25kHzPWM() {
-  // 1. Force TCA0 Timer into Split Mode (gives us six 8-bit PWM channels)
-  TCA0.SPLIT.CTRLA = 0; // Turn off timer momentarily to configure safely
-  
-  // Set Prescaler to 4 (TCA_SPLIT_CLKSEL_DIV4_gc) and Enable Timer
+  TCA0.SPLIT.CTRLA = 0; 
   TCA0.SPLIT.CTRLA = TCA_SPLIT_CLKSEL_DIV4_gc | TCA_SPLIT_ENABLE_bm;
-  
-  // Set Split Mode configuration bit
   TCA0.SPLIT.CTRLD = TCA_SPLIT_SPLIT_bm; 
-
-  // 2. Define the Low Byte Period to achieve exactly 25kHz
-  // Formula: 16MHz / (Prescaler * (LPER + 1)) -> 16,000,000 / (4 * 100) = 25,000 Hz
   TCA0.SPLIT.LPER = 99; 
-
-  // 3. Connect Pin D5 (which is physical Port B, pin 2 / WO2) to the Timer Output Compare
   TCA0.SPLIT.CTRLB |= TCA_SPLIT_HCMP2EN_bm; 
-
-  // 4. Initialize fan duty cycle to 0% (off) initially
   TCA0.SPLIT.LCMP2 = 0; 
-  
   pinMode(FAN_PWM_PIN, OUTPUT);
 }
 
-// Custom function to handle our custom 0-100 range for the 25kHz timer
 void setFanDutyCycle(uint8_t duty) {
-  // Constrain incoming value between 0% and 100%
   if (duty > 100) duty = 100;
-  
-  // Write the value to the Compare Match register for Pin D5
   TCA0.SPLIT.LCMP2 = duty;
 }
 
@@ -69,7 +57,6 @@ void setup() {
   Serial.begin(115200);
   inputString.reserve(30);
   
-  // Initialize Pins
   pinMode(ENCODER_A, INPUT_PULLUP);
   pinMode(ENCODER_B, INPUT_PULLUP);
   pinMode(ENCODER_SW, INPUT_PULLUP);
@@ -82,13 +69,11 @@ void setup() {
   pinMode(TMP126_CS, OUTPUT);
   digitalWrite(TMP126_CS, HIGH);
 
-  // Initialize Hardware Peripherals
   SPI.begin();
-  init25kHzPWM(); // Set up native 25kHz PWM on pin D5
+  init25kHzPWM(); 
 
-  // Initialize I2C and MCP4728
   if (!mcp.begin(0x60)) { 
-    Serial.println("ERR: MCP4728 not found!");
+    Serial.println("ERR:HW_MCP"); 
     while (1) { delay(10); }
   }
 
@@ -108,8 +93,18 @@ void loop() {
   }
 }
 
-// --- Serial & Sensor Functions ---
+// --- Telemetry Output ---
+void transmitSystemState() {
+  bool isSaturated = (dacValues[currentChannel] == 0 || dacValues[currentChannel] == 4095);
+  Serial.print("CH:");
+  Serial.print(currentChannel + 1);
+  Serial.print(",VAL:");
+  Serial.print(dacValues[currentChannel]);
+  Serial.print(",SAT:");
+  Serial.println(isSaturated ? "1" : "0");
+}
 
+// --- Serial & Sensor Functions ---
 void serialEvent() {
   while (Serial.available()) {
     char inChar = (char)Serial.read();
@@ -129,44 +124,35 @@ void processSerialCommand(String command) {
   if (command.startsWith("SET_FAN:")) {
     int valueStringIndex = command.indexOf(':');
     int fanValue = command.substring(valueStringIndex + 1).toInt();
-    
-    // The range is now 0 to 100 (0% to 100% Duty Cycle)
     fanValue = constrain(fanValue, 0, 100);
     setFanDutyCycle(fanValue);
     
-    Serial.print("SUCCESS: Fan speed set to ");
-    Serial.print(fanValue);
-    Serial.println("%");
+    Serial.print("RSP:FAN,");
+    Serial.println(fanValue);
   } 
   else if (command == "GET_TEMP") {
     float temperature = readTMP126();
-    Serial.print("TEMP: ");
-    Serial.print(temperature, 2); 
-    Serial.println(" C");
+    Serial.print("RSP:TMP,");
+    Serial.println(temperature, 2); 
   } 
   else {
-    Serial.println("ERR: Unknown Command. Use 'SET_FAN:0-100' or 'GET_TEMP'");
+    Serial.println("ERR:CMD");
   }
 }
 
 float readTMP126() {
   SPI.beginTransaction(SPISettings(10000000, MSBFIRST, SPI_MODE0));
   digitalWrite(TMP126_CS, LOW);
-
   uint8_t msb = SPI.transfer(0x00); 
   uint8_t lsb = SPI.transfer(0x00);
-
   digitalWrite(TMP126_CS, HIGH);
   SPI.endTransaction();
 
   int16_t rawData = (msb << 8) | lsb;
-  float tempC = (rawData >> 2) * 0.03125; 
-
-  return tempC;
+  return (rawData >> 2) * 0.03125; 
 }
 
 // --- UI & Peripheral Control Logic ---
-
 void handleEncoderButton() {
   bool reading = digitalRead(ENCODER_SW);
   if (reading != lastButtonState) {
@@ -178,9 +164,12 @@ void handleEncoderButton() {
       currentChannel++;
       if (currentChannel > 2) currentChannel = 0;
       
-      Serial.print("SYS: Active Channel -> ");
-      Serial.println(currentChannel + 1);
       updateLEDs();
+      
+      // Conditional compile: Only alerts PC on press if debugging is active
+      #if DEBUG_MODE
+        transmitSystemState(); 
+      #endif
     }
   }
   lastButtonState = reading;
@@ -197,13 +186,13 @@ void handleEncoderRotation() {
       else dacValues[currentChannel] = 0;
     }
 
-    Serial.print("SYS: Ch ");
-    Serial.print(currentChannel + 1);
-    Serial.print(" -> Value: ");
-    Serial.println(dacValues[currentChannel]);
-
     updateDAC();
     checkSaturation();
+    
+    // Conditional compile: Only alerts PC on rotate if debugging is active
+    #if DEBUG_MODE
+      transmitSystemState(); 
+    #endif
   }
   lastStateA = currentStateA;
 }
