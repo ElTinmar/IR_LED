@@ -6,7 +6,7 @@
 const int ENCODER_A = 2;
 const int ENCODER_B = 3;
 const int ENCODER_SW = 4;
-const int FAN_PWM_PIN = 5;
+const int FAN_PWM_PIN = 5;  // Tied to TCA0 WO2 (Split Mode Low Byte)
 
 // Status LEDs
 const int LED_CH1 = 6;
@@ -14,7 +14,7 @@ const int LED_CH2 = 7;
 const int LED_CH3 = 8;
 const int LED_SATURATION = 9; 
 
-// SPI TMP126 (Nano Every default SPI hardware: MOSI=11, MISO=12, SCK=13)
+// SPI TMP126
 const int TMP126_CS = 10; 
 
 // --- Global Variables ---
@@ -33,16 +33,46 @@ bool lastButtonState = HIGH;
 String inputString = "";
 bool stringComplete = false;
 
+void init25kHzPWM() {
+  // 1. Force TCA0 Timer into Split Mode (gives us six 8-bit PWM channels)
+  TCA0.SPLIT.CTRLA = 0; // Turn off timer momentarily to configure safely
+  
+  // Set Prescaler to 4 (TCA_SPLIT_CLKSEL_DIV4_gc) and Enable Timer
+  TCA0.SPLIT.CTRLA = TCA_SPLIT_CLKSEL_DIV4_gc | TCA_SPLIT_ENABLE_bm;
+  
+  // Set Split Mode configuration bit
+  TCA0.SPLIT.CTRLD = TCA_SPLIT_SPLIT_bm; 
+
+  // 2. Define the Low Byte Period to achieve exactly 25kHz
+  // Formula: 16MHz / (Prescaler * (LPER + 1)) -> 16,000,000 / (4 * 100) = 25,000 Hz
+  TCA0.SPLIT.LPER = 99; 
+
+  // 3. Connect Pin D5 (which is physical Port B, pin 2 / WO2) to the Timer Output Compare
+  TCA0.SPLIT.CTRLB |= TCA_SPLIT_HCMP2EN_bm; 
+
+  // 4. Initialize fan duty cycle to 0% (off) initially
+  TCA0.SPLIT.LCMP2 = 0; 
+  
+  pinMode(FAN_PWM_PIN, OUTPUT);
+}
+
+// Custom function to handle our custom 0-100 range for the 25kHz timer
+void setFanDutyCycle(uint8_t duty) {
+  // Constrain incoming value between 0% and 100%
+  if (duty > 100) duty = 100;
+  
+  // Write the value to the Compare Match register for Pin D5
+  TCA0.SPLIT.LCMP2 = duty;
+}
+
 void setup() {
   Serial.begin(115200);
-  inputString.reserve(30); // Reserve memory for serial string parsing
+  inputString.reserve(30);
   
   // Initialize Pins
   pinMode(ENCODER_A, INPUT_PULLUP);
   pinMode(ENCODER_B, INPUT_PULLUP);
   pinMode(ENCODER_SW, INPUT_PULLUP);
-  
-  pinMode(FAN_PWM_PIN, OUTPUT);
   
   pinMode(LED_CH1, OUTPUT);
   pinMode(LED_CH2, OUTPUT);
@@ -50,10 +80,11 @@ void setup() {
   pinMode(LED_SATURATION, OUTPUT);
   
   pinMode(TMP126_CS, OUTPUT);
-  digitalWrite(TMP126_CS, HIGH); // Deselect TMP126 initially
+  digitalWrite(TMP126_CS, HIGH);
 
-  // Initialize SPI for TMP126
+  // Initialize Hardware Peripherals
   SPI.begin();
+  init25kHzPWM(); // Set up native 25kHz PWM on pin D5
 
   // Initialize I2C and MCP4728
   if (!mcp.begin(0x60)) { 
@@ -62,7 +93,6 @@ void setup() {
   }
 
   lastStateA = digitalRead(ENCODER_A);
-
   updateLEDs();
   updateDAC();
 }
@@ -71,17 +101,15 @@ void loop() {
   handleEncoderButton();
   handleEncoderRotation();
   
-  // Check if a full serial command has arrived
   if (stringComplete) {
     processSerialCommand(inputString);
-    inputString = "";      // Clear string for next command
+    inputString = "";      
     stringComplete = false;
   }
 }
 
 // --- Serial & Sensor Functions ---
 
-// Collects serial data on the fly without blocking the main loop execution
 void serialEvent() {
   while (Serial.available()) {
     char inChar = (char)Serial.read();
@@ -96,49 +124,42 @@ void serialEvent() {
 }
 
 void processSerialCommand(String command) {
-  command.trim(); // Strip extra spaces
+  command.trim();
   
   if (command.startsWith("SET_FAN:")) {
     int valueStringIndex = command.indexOf(':');
     int fanValue = command.substring(valueStringIndex + 1).toInt();
     
-    // Constrain to typical 8-bit PWM spectrum (0-255)
-    fanValue = constrain(fanValue, 0, 255);
-    analogWrite(FAN_PWM_PIN, fanValue);
+    // The range is now 0 to 100 (0% to 100% Duty Cycle)
+    fanValue = constrain(fanValue, 0, 100);
+    setFanDutyCycle(fanValue);
     
     Serial.print("SUCCESS: Fan speed set to ");
-    Serial.println(fanValue);
+    Serial.print(fanValue);
+    Serial.println("%");
   } 
   else if (command == "GET_TEMP") {
     float temperature = readTMP126();
     Serial.print("TEMP: ");
-    Serial.print(temperature, 2); // Print out temperature with 2 decimal places
+    Serial.print(temperature, 2); 
     Serial.println(" C");
   } 
   else {
-    Serial.println("ERR: Unknown Command. Use 'SET_FAN:value' or 'GET_TEMP'");
+    Serial.println("ERR: Unknown Command. Use 'SET_FAN:0-100' or 'GET_TEMP'");
   }
 }
 
-// Reads and decodes temperature data out of the TMP126 via SPI
 float readTMP126() {
-  // Set SPI settings: Up to 10 MHz clock speed, MSB First, SPI Mode 0
   SPI.beginTransaction(SPISettings(10000000, MSBFIRST, SPI_MODE0));
   digitalWrite(TMP126_CS, LOW);
 
-  // Read 2 bytes from the TMP126 Temperature Register
   uint8_t msb = SPI.transfer(0x00); 
   uint8_t lsb = SPI.transfer(0x00);
 
   digitalWrite(TMP126_CS, HIGH);
   SPI.endTransaction();
 
-  // Combine bytes into a signed 16-bit integer
   int16_t rawData = (msb << 8) | lsb;
-
-  // The TMP126 features a 14-bit resolution scaled down inside a 16-bit window, 
-  // or a straight 14-bit/16-bit map depending on configuration mode. 
-  // Standard conversion for standard 14-bit data right-justified (0.03125°C per LSB):
   float tempC = (rawData >> 2) * 0.03125; 
 
   return tempC;
