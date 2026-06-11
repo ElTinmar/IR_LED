@@ -39,12 +39,25 @@ String inputString = "";
 bool stringComplete = false;
 
 void init25kHzPWM() {
-  TCA0.SPLIT.CTRLA = 0; 
+  // 1. Force TCA0 Timer into Split Mode (gives us six 8-bit PWM channels)
+  TCA0.SPLIT.CTRLA = 0; // Turn off timer momentarily to configure safely
+  
+  // Set Prescaler to 4 (TCA_SPLIT_CLKSEL_DIV4_gc) and Enable Timer
   TCA0.SPLIT.CTRLA = TCA_SPLIT_CLKSEL_DIV4_gc | TCA_SPLIT_ENABLE_bm;
+  
+  // Set Split Mode configuration bit
   TCA0.SPLIT.CTRLD = TCA_SPLIT_SPLIT_bm; 
+
+  // 2. Define the Low Byte Period to achieve exactly 25kHz
+  // Formula: 16MHz / (Prescaler * (LPER + 1)) -> 16,000,000 / (4 * 100) = 25,000 Hz
   TCA0.SPLIT.LPER = 99; 
+
+  // 3. Connect Pin D5 (which is physical Port B, pin 2 / WO2) to the Timer Output Compare
   TCA0.SPLIT.CTRLB |= TCA_SPLIT_HCMP2EN_bm; 
+
+  // 4. Initialize fan duty cycle to 0% (off) initially
   TCA0.SPLIT.LCMP2 = 0; 
+  
   pinMode(FAN_PWM_PIN, OUTPUT);
 }
 
