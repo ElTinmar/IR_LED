@@ -1648,212 +1648,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Connector:Screw_Terminal_01x02"
-			(pin_names
-				(offset 1.016)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "J"
-				(at 0 2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Screw_Terminal_01x02"
-				(at 0 -5.08 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "screw terminal"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "TerminalBlock*:*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "Screw_Terminal_01x02_1_1"
-				(rectangle
-					(start -1.27 1.27)
-					(end 1.27 -3.81)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.5334 0.3302) (xy 0.3302 -0.508)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.5334 -2.2098) (xy 0.3302 -3.048)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.3556 0.508) (xy 0.508 -0.3302)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.3556 -2.032) (xy 0.508 -2.8702)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 0 0)
-					(radius 0.635)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 0 -2.54)
-					(radius 0.635)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at -5.08 0 0)
-					(length 3.81)
-					(name "Pin_1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -5.08 -2.54 0)
-					(length 3.81)
-					(name "Pin_2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Connector:TestPoint"
 			(pin_numbers
 				(hide yes)
@@ -2265,327 +2059,6 @@
 						(effects
 							(font
 								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "MAX6675ISA_:MAX6675ISA_"
-			(pin_names
-				(offset 1.016)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "U"
-				(at -12.7 16.24 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Value" "MAX6675ISA_"
-				(at -12.7 -19.24 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Footprint" "MAX6675ISA_:SOIC127P600X175-8N"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Thermocouple to Digital Converter IC Thermocouple (K) Input Digital Output 8-SOIC"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "MF" "Maxim Integrated Products"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "Package" "SOIC-8 Maxim"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "Price" "None"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "SnapEDA_Link" "https://www.snapeda.com/parts/MAX6675ISA+/Maxim+Integrated/view-part/?ref=snap"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "MP" "MAX6675ISA+"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=13766196&manufacturer=Maxim Integrated Products&part_name=MAX6675ISA+&search_term=None"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "Availability" "In Stock"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "Check_prices" "https://www.snapeda.com/parts/MAX6675ISA+/Maxim+Integrated/view-part/?ref=eda"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(symbol "MAX6675ISA__0_0"
-				(rectangle
-					(start -12.7 -15.24)
-					(end 12.7 15.24)
-					(stroke
-						(width 0.41)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(pin power_in line
-					(at 17.78 -10.16 180)
-					(length 5.08)
-					(name "GND"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 0 0)
-					(length 5.08)
-					(name "T-"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 2.54 0)
-					(length 5.08)
-					(name "T+"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 17.78 12.7 180)
-					(length 5.08)
-					(name "VCC"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 5.08 0)
-					(length 5.08)
-					(name "SCK"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -17.78 7.62 0)
-					(length 5.08)
-					(name "~{CS}"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 17.78 7.62 180)
-					(length 5.08)
-					(name "SO"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -17.78 -5.08 0)
-					(length 5.08)
-					(name "N.C."
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.016 1.016)
 							)
 						)
 					)
@@ -5002,17 +4475,6 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "K-Thermocouple-\nto-Digital Converter"
-		(exclude_from_sim no)
-		(at 332.74 168.91 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "46116171-7aff-40d8-877b-215cc48c9667")
-	)
 	(text "12bits Quad-channel DAC"
 		(exclude_from_sim no)
 		(at 219.71 146.05 0)
@@ -5181,12 +4643,6 @@
 		(uuid "46c4520f-302a-47b9-aec5-6bb33cef84b0")
 	)
 	(junction
-		(at 331.47 99.06)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "478e91e0-8f03-4cbc-9586-f05dc7cd72c2")
-	)
-	(junction
 		(at 250.19 209.55)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5247,12 +4703,6 @@
 		(uuid "65ad285a-0b7e-4e5a-85f5-b0262c6795c0")
 	)
 	(junction
-		(at 367.03 158.75)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "6951914d-83cf-4d4b-8974-4ae6846bcff5")
-	)
-	(junction
 		(at 313.69 48.26)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5269,12 +4719,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "8172506c-bf98-446f-ba5c-7114138a569b")
-	)
-	(junction
-		(at 313.69 148.59)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "81ae9d50-cb9e-482d-94c4-e6aa24208bf5")
 	)
 	(junction
 		(at 386.08 123.19)
@@ -5329,6 +4773,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b1544bb1-f2eb-40e8-b2a8-4c160d208779")
+	)
+	(junction
+		(at 208.28 99.06)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b159be9d-5071-46da-934b-3caa81301bf8")
 	)
 	(junction
 		(at 313.69 209.55)
@@ -5403,22 +4853,10 @@
 		(uuid "d1a11d4e-8e04-407f-a329-a44ac9a5406c")
 	)
 	(junction
-		(at 367.03 99.06)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d28f3039-88a8-4710-b46a-a2ba12856582")
-	)
-	(junction
 		(at 391.16 38.1)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d6501c13-28aa-4184-83a3-e06bd0c207a4")
-	)
-	(junction
-		(at 367.03 135.89)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d94cd258-f19b-44e1-96a4-f149c60b4c66")
 	)
 	(junction
 		(at 171.45 209.55)
@@ -5469,12 +4907,6 @@
 		(uuid "f424a026-dc8a-4e28-b05a-0449475bd7f6")
 	)
 	(junction
-		(at 313.69 35.56)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "f44f0741-4d81-48e3-9592-212e9c58da5f")
-	)
-	(junction
 		(at 34.29 104.14)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5491,10 +4923,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fb862c7a-7df0-4af4-b2d6-75c9d93d8d09")
-	)
-	(no_connect
-		(at 323.85 153.67)
-		(uuid "0c5a696b-af4b-4505-b256-a1647be6027f")
 	)
 	(no_connect
 		(at 275.59 173.99)
@@ -5691,16 +5119,6 @@
 	)
 	(wire
 		(pts
-			(xy 316.23 29.21) (xy 316.23 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "13a79ddb-6f11-4fe6-aa75-38285dc59628")
-	)
-	(wire
-		(pts
 			(xy 140.97 107.95) (xy 140.97 109.22)
 		)
 		(stroke
@@ -5754,16 +5172,6 @@
 	)
 	(wire
 		(pts
-			(xy 323.85 143.51) (xy 321.31 143.51)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1b282729-ca23-4b08-8e49-4fd43d1ac942")
-	)
-	(wire
-		(pts
 			(xy 26.67 102.87) (xy 26.67 104.14)
 		)
 		(stroke
@@ -5802,17 +5210,6 @@
 			(type default)
 		)
 		(uuid "1effc55b-f23f-4e03-813e-edec7c4949d8")
-	)
-	(wire
-		(pts
-			(xy 367.03 144.78) (xy 367.03 158.75)
-		)
-		(stroke
-			(width 0.5)
-			(type default)
-			(color 0 0 0 1)
-		)
-		(uuid "1f2a4ba9-41b1-4084-b7ac-779f8aab3e31")
 	)
 	(wire
 		(pts
@@ -6036,16 +5433,6 @@
 	)
 	(wire
 		(pts
-			(xy 321.31 143.51) (xy 321.31 130.81)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "343bf571-b40d-4a49-a292-847f8d8f6cdf")
-	)
-	(wire
-		(pts
 			(xy 280.67 114.3) (xy 280.67 123.19)
 		)
 		(stroke
@@ -6074,16 +5461,6 @@
 			(type default)
 		)
 		(uuid "3878115b-86c2-4e90-bbf0-303a7d60abbf")
-	)
-	(wire
-		(pts
-			(xy 367.03 137.16) (xy 367.03 135.89)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "38c038f1-b92a-4168-93be-34b709950a9b")
 	)
 	(wire
 		(pts
@@ -6184,17 +5561,6 @@
 	)
 	(wire
 		(pts
-			(xy 313.69 29.21) (xy 313.69 35.56)
-		)
-		(stroke
-			(width 0.5)
-			(type default)
-			(color 0 0 0 1)
-		)
-		(uuid "47d22734-6597-4707-bb81-25cc4d66b55f")
-	)
-	(wire
-		(pts
 			(xy 171.45 209.55) (xy 175.26 209.55)
 		)
 		(stroke
@@ -6203,17 +5569,6 @@
 			(color 0 0 0 1)
 		)
 		(uuid "4911fcf2-660e-4843-999a-64a3192be512")
-	)
-	(wire
-		(pts
-			(xy 313.69 148.59) (xy 313.69 209.55)
-		)
-		(stroke
-			(width 0.5)
-			(type default)
-			(color 0 0 0 1)
-		)
-		(uuid "4a7520de-c709-4457-954b-dac9b2c07919")
 	)
 	(wire
 		(pts
@@ -6329,6 +5684,17 @@
 	)
 	(wire
 		(pts
+			(xy 208.28 99.06) (xy 252.73 99.06)
+		)
+		(stroke
+			(width 0.5)
+			(type default)
+			(color 0 0 255 1)
+		)
+		(uuid "5460ccaf-e9e2-4fe6-a2ae-6be518e17fab")
+	)
+	(wire
+		(pts
 			(xy 161.29 212.09) (xy 161.29 214.63)
 		)
 		(stroke
@@ -6409,17 +5775,6 @@
 			(type default)
 		)
 		(uuid "5c99f341-b9a4-40d1-9be0-584c5198a7cf")
-	)
-	(wire
-		(pts
-			(xy 359.41 158.75) (xy 367.03 158.75)
-		)
-		(stroke
-			(width 0.5)
-			(type default)
-			(color 0 0 0 1)
-		)
-		(uuid "5e3279e1-6b87-4ec7-8802-a198ac0bb2fe")
 	)
 	(wire
 		(pts
@@ -6735,7 +6090,7 @@
 	)
 	(wire
 		(pts
-			(xy 257.81 99.06) (xy 331.47 99.06)
+			(xy 257.81 99.06) (xy 367.03 99.06)
 		)
 		(stroke
 			(width 0.5)
@@ -6872,17 +6227,6 @@
 	)
 	(wire
 		(pts
-			(xy 359.41 135.89) (xy 367.03 135.89)
-		)
-		(stroke
-			(width 0.5)
-			(type default)
-			(color 0 0 255 1)
-		)
-		(uuid "8a81c6ab-f3ea-4f68-8a62-bff4db58f32f")
-	)
-	(wire
-		(pts
 			(xy 140.97 177.8) (xy 140.97 179.07)
 		)
 		(stroke
@@ -6997,7 +6341,7 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 99.06) (xy 214.63 99.06)
+			(xy 203.2 99.06) (xy 208.28 99.06)
 		)
 		(stroke
 			(width 0)
@@ -7226,6 +6570,16 @@
 	)
 	(wire
 		(pts
+			(xy 208.28 99.06) (xy 214.63 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ac8ce07d-af7c-4472-adef-eb3eefe3d092")
+	)
+	(wire
+		(pts
 			(xy 293.37 143.51) (xy 295.91 143.51)
 		)
 		(stroke
@@ -7265,16 +6619,6 @@
 			(type default)
 		)
 		(uuid "af42e90e-b96b-46be-bf45-6757491e7e08")
-	)
-	(wire
-		(pts
-			(xy 318.77 133.35) (xy 318.77 127)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "aff545e9-58b1-4776-9d39-8dda248dcedc")
 	)
 	(wire
 		(pts
@@ -7338,17 +6682,6 @@
 	)
 	(wire
 		(pts
-			(xy 367.03 99.06) (xy 367.03 135.89)
-		)
-		(stroke
-			(width 0.5)
-			(type default)
-			(color 0 0 255 1)
-		)
-		(uuid "b50e2243-dde8-4dd3-b7f5-fa9c9da91df2")
-	)
-	(wire
-		(pts
 			(xy 264.16 50.8) (xy 264.16 180.34)
 		)
 		(stroke
@@ -7400,17 +6733,6 @@
 	)
 	(wire
 		(pts
-			(xy 331.47 99.06) (xy 367.03 99.06)
-		)
-		(stroke
-			(width 0.5)
-			(type default)
-			(color 0 0 255 1)
-		)
-		(uuid "bb99d227-bd11-4461-88b0-601fd0e2e73f")
-	)
-	(wire
-		(pts
 			(xy 68.58 167.64) (xy 77.47 167.64)
 		)
 		(stroke
@@ -7443,7 +6765,7 @@
 	)
 	(wire
 		(pts
-			(xy 313.69 114.3) (xy 313.69 148.59)
+			(xy 313.69 114.3) (xy 313.69 209.55)
 		)
 		(stroke
 			(width 0.5)
@@ -7630,16 +6952,6 @@
 	)
 	(wire
 		(pts
-			(xy 323.85 146.05) (xy 316.23 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cb623251-5e73-4029-bc7d-580a50d3025f")
-	)
-	(wire
-		(pts
 			(xy 153.67 109.22) (xy 153.67 179.07)
 		)
 		(stroke
@@ -7715,7 +7027,7 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 99.06) (xy 252.73 99.06)
+			(xy 203.2 99.06) (xy 208.28 99.06)
 		)
 		(stroke
 			(width 0.5)
@@ -7785,16 +7097,6 @@
 			(color 0 0 0 1)
 		)
 		(uuid "d78d1a21-de8b-4a64-af43-39c33387cc31")
-	)
-	(wire
-		(pts
-			(xy 318.77 127) (xy 361.95 127)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d84cca9c-e5f4-4514-8201-e6651a71e4e6")
 	)
 	(wire
 		(pts
@@ -7964,17 +7266,6 @@
 	)
 	(wire
 		(pts
-			(xy 313.69 148.59) (xy 323.85 148.59)
-		)
-		(stroke
-			(width 0.5)
-			(type default)
-			(color 0 0 0 1)
-		)
-		(uuid "f025f75b-8c6f-4574-8e24-5c98fc1e49bf")
-	)
-	(wire
-		(pts
 			(xy 26.67 99.06) (xy 34.29 99.06)
 		)
 		(stroke
@@ -8025,16 +7316,6 @@
 			(color 0 0 0 1)
 		)
 		(uuid "f48e0143-f172-47b3-917a-eab2d233918e")
-	)
-	(wire
-		(pts
-			(xy 361.95 127) (xy 361.95 140.97)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f53a366b-4882-4c21-b5c8-e0707e999c1d")
 	)
 	(wire
 		(pts
@@ -8119,27 +7400,6 @@
 			(color 0 0 255 1)
 		)
 		(uuid "fbaf4486-867a-45d0-b9ae-a692edb0c681")
-	)
-	(wire
-		(pts
-			(xy 367.03 158.75) (xy 367.03 209.55)
-		)
-		(stroke
-			(width 0.5)
-			(type default)
-			(color 0 0 0 1)
-		)
-		(uuid "fc99bad4-dfc0-464a-b407-67ddd8d38bb9")
-	)
-	(wire
-		(pts
-			(xy 359.41 140.97) (xy 361.95 140.97)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fcc1bd52-bd55-41a6-af8b-c866a06f509e")
 	)
 	(wire
 		(pts
@@ -8239,7 +7499,7 @@
 			)
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "H4")
 					(unit 1)
@@ -8316,7 +7576,7 @@
 			(uuid "7a468b51-d78c-4191-8a26-0521e5210220")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "#PWR04")
 					(unit 1)
@@ -8410,7 +7670,7 @@
 			(uuid "2cb99872-a070-493a-bf01-20f6b95942c8")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "J11")
 					(unit 1)
@@ -8501,7 +7761,7 @@
 			(uuid "929d663c-8c45-4dee-8a11-f2391d5c8915")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "J8")
 					(unit 1)
@@ -8744,7 +8004,7 @@
 			(uuid "544e6311-7e4c-4540-b5ce-d1e04d32633e")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "J0")
 					(unit 1)
@@ -8822,7 +8082,7 @@
 			(uuid "2651caf2-a562-4402-8e9c-8a540904e99c")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "TP4")
 					(unit 1)
@@ -8899,7 +8159,7 @@
 			(uuid "d6e95a57-e115-4f64-a993-020cab68345a")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "#FLG01")
 					(unit 1)
@@ -8990,7 +8250,7 @@
 			(uuid "772f293c-d093-497d-aa6d-213e06292c4b")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "J12")
 					(unit 1)
@@ -9065,7 +8325,7 @@
 			)
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "H1")
 					(unit 1)
@@ -9223,7 +8483,7 @@
 			(uuid "0d070b54-c879-4d00-bca4-35ca42f133a3")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "PS3")
 					(unit 1)
@@ -9301,7 +8561,7 @@
 			(uuid "2651caf2-a562-4402-8e9c-8a540904e99d")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "TP2")
 					(unit 1)
@@ -9381,7 +8641,7 @@
 			(uuid "0c443702-9e99-42c8-965e-137c13ee2524")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "C1")
 					(unit 1)
@@ -9478,7 +8738,7 @@
 			(uuid "2807ab9d-890a-40d9-89db-c1473735ee2e")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "J5")
 					(unit 1)
@@ -9558,7 +8818,7 @@
 			(uuid "2d395efc-2975-4c30-bf7d-4fb2ee622a2c")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "R3")
 					(unit 1)
@@ -9716,7 +8976,7 @@
 			(uuid "f23147e6-6871-43ed-8276-3d7a5813b8c1")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "PS2")
 					(unit 1)
@@ -9796,7 +9056,7 @@
 			(uuid "881424bb-6e23-4ac3-aff9-a7f7837fa91f")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "C2")
 					(unit 1)
@@ -9890,7 +9150,7 @@
 			(uuid "0ca499ec-2a14-43e3-b65e-969a69c272b8")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "J6")
 					(unit 1)
@@ -9970,7 +9230,7 @@
 			(uuid "1f973ec7-49b0-42f9-afe9-d6dfa670cdc0")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "R10")
 					(unit 1)
@@ -10045,7 +9305,7 @@
 			)
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "H2")
 					(unit 1)
@@ -10123,7 +9383,7 @@
 			(uuid "2651caf2-a562-4402-8e9c-8a540904e99e")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "TP6")
 					(unit 1)
@@ -10203,7 +9463,7 @@
 			(uuid "29e5bc72-b3c3-487c-ab78-e42a096a17f3")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "R6")
 					(unit 1)
@@ -10297,7 +9557,7 @@
 			(uuid "3630fcd5-e717-4838-bb1e-8093e214d4d8")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "U5")
 					(unit 1)
@@ -10375,7 +9635,7 @@
 			(uuid "2651caf2-a562-4402-8e9c-8a540904e99f")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "TP3")
 					(unit 1)
@@ -10452,7 +9712,7 @@
 			(uuid "d00deae8-17fc-416e-a2d8-e30598fe43d0")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "#FLG04")
 					(unit 1)
@@ -10617,7 +9877,7 @@
 			(uuid "5b36f9f6-df22-4fc4-b595-bc91c0a027a7")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "A1")
 					(unit 1)
@@ -10694,7 +9954,7 @@
 			(uuid "4d4a9a70-7ac8-45e4-b1ce-4043e1a3b937")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "#PWR03")
 					(unit 1)
@@ -10775,7 +10035,7 @@
 			(uuid "29e5bc72-b3c3-487c-ab78-e42a096a17f4")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "R8")
 					(unit 1)
@@ -10855,7 +10115,7 @@
 			(uuid "57efcdaf-b42d-4d9f-a1ad-066315e707cb")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "J3")
 					(unit 1)
@@ -10935,7 +10195,7 @@
 			(uuid "507f0a30-d9d9-4aa2-85f7-911cd3853772")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "J1")
 					(unit 1)
@@ -11118,99 +10378,9 @@
 			(uuid "a4fa0a34-77f1-4be0-8484-5b52725fb630")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "IC1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:Screw_Terminal_01x02")
-		(at 313.69 24.13 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a7171a0d-47ac-46fa-893e-51e7dda27bee")
-		(property "Reference" "J7"
-			(at 318.77 22.86 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "Screw_Terminal_01x02"
-			(at 318.77 25.4 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2_1x02_P5.00mm_Horizontal"
-			(at 313.69 24.13 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 313.69 24.13 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 313.69 24.13 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Note" "K. Thermocouple"
-			(at 316.23 20.32 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "862b0bb5-16b3-46b2-af7d-f4dc76b68a54")
-		)
-		(pin "1"
-			(uuid "67dc60f8-199d-4180-bfba-a01cc1a2c8f1")
-		)
-		(instances
-			(project "IR_control_smart"
-				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
-					(reference "J7")
 					(unit 1)
 				)
 			)
@@ -11366,7 +10536,7 @@
 			(uuid "f23147e6-6871-43ed-8276-3d7a5813b8c2")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "PS1")
 					(unit 1)
@@ -11443,7 +10613,7 @@
 			(uuid "38a0f61b-527e-40b7-94e3-8e3d4a5bf512")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "#PWR02")
 					(unit 1)
@@ -11523,7 +10693,7 @@
 			(uuid "f64c64b2-72a3-40e4-bfa1-0ddaf2b6c72f")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "R1")
 					(unit 1)
@@ -11603,7 +10773,7 @@
 			(uuid "6f6b214a-4a29-44db-bb80-2c5decb4f9c4")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "C4")
 					(unit 1)
@@ -11696,7 +10866,7 @@
 			(uuid "39fcca96-e5b8-41e3-9c13-727c61bc04ef")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "U4")
 					(unit 1)
@@ -11776,7 +10946,7 @@
 			(uuid "78276cb1-93bf-48f2-b7b6-46ba4c255cc4")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "J2")
 					(unit 1)
@@ -11853,7 +11023,7 @@
 			(uuid "49438cc5-5b8e-48c4-adf4-2ca3632a547f")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "#PWR01")
 					(unit 1)
@@ -11931,205 +11101,9 @@
 			(uuid "2651caf2-a562-4402-8e9c-8a540904e9a0")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "TP1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "MAX6675ISA_:MAX6675ISA_")
-		(at 341.63 148.59 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "c74240ea-264e-40a3-84d5-4df7bce0062c")
-		(property "Reference" "U3"
-			(at 341.63 129.54 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "MAX6675ISA_"
-			(at 341.63 132.08 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "MAX6675ISA_:SOIC127P600X175-8N"
-			(at 341.63 148.59 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "Datasheet" ""
-			(at 341.63 148.59 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Thermocouple to Digital Converter IC Thermocouple (K) Input Digital Output 8-SOIC"
-			(at 341.63 148.59 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "MF" "Maxim Integrated Products"
-			(at 341.63 148.59 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "Package" "SOIC-8 Maxim"
-			(at 341.63 148.59 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "Price" "None"
-			(at 341.63 148.59 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/MAX6675ISA+/Maxim+Integrated/view-part/?ref=snap"
-			(at 341.63 148.59 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "MP" "MAX6675ISA+"
-			(at 341.63 148.59 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=13766196&manufacturer=Maxim Integrated Products&part_name=MAX6675ISA+&search_term=None"
-			(at 341.63 148.59 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "Availability" "In Stock"
-			(at 341.63 148.59 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/MAX6675ISA+/Maxim+Integrated/view-part/?ref=eda"
-			(at 341.63 148.59 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(pin "8"
-			(uuid "47700e8f-8fe1-4615-b9b7-b3a3710b103a")
-		)
-		(pin "7"
-			(uuid "dbb4484c-2f1b-462f-bddc-6c46c8e57343")
-		)
-		(pin "5"
-			(uuid "95e9c3a5-c17d-484b-a78c-a5ca82581dfd")
-		)
-		(pin "6"
-			(uuid "095422c4-2cfa-41a1-b49b-d36bdd7cca55")
-		)
-		(pin "3"
-			(uuid "e57a3984-1dd6-447e-998f-8f6af4121b2f")
-		)
-		(pin "2"
-			(uuid "57597c4b-8603-4685-9979-1d84b3ea93a0")
-		)
-		(pin "1"
-			(uuid "6341952b-d22a-42d2-aa8d-29846fc2ad07")
-		)
-		(pin "4"
-			(uuid "de36b670-5138-40a2-95fb-9ac17d78eecf")
-		)
-		(instances
-			(project "IR_control_smart"
-				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
-					(reference "U3")
 					(unit 1)
 				)
 			)
@@ -12208,7 +11182,7 @@
 			(uuid "29e5bc72-b3c3-487c-ab78-e42a096a17f5")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "R7")
 					(unit 1)
@@ -12288,7 +11262,7 @@
 			(uuid "a6544e5d-c062-431c-b3c9-ce6fd7123f3e")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "R4")
 					(unit 1)
@@ -12368,7 +11342,7 @@
 			(uuid "6408ec2f-7804-4e3b-b96c-2b11ebfaca5c")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "J4")
 					(unit 1)
@@ -12378,7 +11352,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 331.47 99.06 180)
+		(at 208.28 99.06 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12389,7 +11363,7 @@
 		(fields_autoplaced yes)
 		(uuid "d4d60fce-9d9c-4943-a830-36331c0bf189")
 		(property "Reference" "TP5"
-			(at 334.01 101.092 0)
+			(at 210.82 101.092 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12400,7 +11374,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 334.01 103.632 0)
+			(at 210.82 103.632 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12411,7 +11385,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
-			(at 326.39 99.06 0)
+			(at 203.2 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12422,7 +11396,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 326.39 99.06 0)
+			(at 203.2 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12433,7 +11407,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 331.47 99.06 0)
+			(at 208.28 99.06 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12446,7 +11420,7 @@
 			(uuid "2651caf2-a562-4402-8e9c-8a540904e9a1")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "TP5")
 					(unit 1)
@@ -12521,90 +11495,9 @@
 			)
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "H3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 367.03 140.97 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "dbc53c9e-736b-4cec-a9ed-42f7167262d5")
-		(property "Reference" "C3"
-			(at 370.84 139.7 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.1uF"
-			(at 370.84 142.24 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm"
-			(at 367.9952 144.78 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 367.03 140.97 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 367.03 140.97 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "9676d38b-0210-472b-87ec-d10aa1dd9656")
-		)
-		(pin "1"
-			(uuid "ec80a37a-c44b-4a55-803e-c61cef61a95f")
-		)
-		(instances
-			(project "IR_control_smart"
-				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
-					(reference "C3")
 					(unit 1)
 				)
 			)
@@ -12685,7 +11578,7 @@
 			(uuid "2e387350-9721-4e4b-b1b5-a467ecaea179")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "F1")
 					(unit 1)
@@ -12790,7 +11683,7 @@
 			(uuid "026af622-b88f-4003-8397-07eb17129dff")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "U2")
 					(unit 1)
@@ -12948,7 +11841,7 @@
 			(uuid "e8250af3-59bc-4136-a9f3-b4f5621fdf23")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "PS4")
 					(unit 1)
@@ -13029,7 +11922,7 @@
 			(uuid "d224f7ed-ed8c-4f49-8c8c-0d0199532565")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "R9")
 					(unit 1)
@@ -13109,7 +12002,7 @@
 			(uuid "352b17f3-f57e-47de-bab1-ec6e09a643b1")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "R5")
 					(unit 1)
@@ -13189,7 +12082,7 @@
 			(uuid "5496db77-7272-4d88-bb1d-e0a0f3e34da8")
 		)
 		(instances
-			(project "IR_control_smart"
+			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "R2")
 					(unit 1)
