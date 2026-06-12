@@ -160,7 +160,7 @@
         "min_text_height": 0.8,
         "min_text_thickness": 0.08,
         "min_through_hole_diameter": 0.3,
-        "min_track_width": 0.6,
+        "min_track_width": 0.2,
         "min_via_annular_width": 0.1,
         "min_via_diameter": 0.5,
         "solder_mask_to_copper_clearance": 0.0,
@@ -672,7 +672,7 @@
         "uuid": "22c636c5-bb06-4895-803e-d0c20393f5d8"
       }
     ],
-    "used_designators": "",
+    "used_designators": "C1,J2,IC1",
     "variants": []
   },
   "sheets": [
