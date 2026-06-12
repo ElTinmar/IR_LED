@@ -2,6 +2,7 @@
 # Format documentation: https://kicad.org/help/file-formats/
 
 # Temporary files
+
 *.000
 *.bak
 *.bck
@@ -21,6 +22,10 @@ _autosave-*
 fp-info-cache
 ~*.lck
 \#auto_saved_files#
+
+# lib location
+*fp_lib_table
+*sym_lib_table
 
 # Netlist files (exported from Eeschema)
 *.net
