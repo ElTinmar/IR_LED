@@ -5136,6 +5136,12 @@
 		(uuid "62912092-3d9d-48ab-bb96-3842372c3f36")
 	)
 	(junction
+		(at 346.71 106.68)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "74afc4d7-e293-46d7-a38e-86d7d0482e7c")
+	)
+	(junction
 		(at 232.41 158.75)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5334,6 +5340,12 @@
 		(uuid "f1ae608e-b1ee-4380-96b7-6c6a225f728d")
 	)
 	(junction
+		(at 346.71 99.06)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f2ff9c98-663c-4aa4-ad0a-4f117358a881")
+	)
+	(junction
 		(at 203.2 118.11)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5394,10 +5406,6 @@
 		(uuid "8df09973-2f09-4324-8015-6fcc1245207b")
 	)
 	(no_connect
-		(at 349.25 29.21)
-		(uuid "adfa40a4-c44e-403b-8474-1f612b6870bd")
-	)
-	(no_connect
 		(at 267.97 153.67)
 		(uuid "b98ca049-ff89-40ca-9b3e-3426f601267e")
 	)
@@ -5416,6 +5424,10 @@
 	(no_connect
 		(at 267.97 143.51)
 		(uuid "dd53c07e-b9a2-444b-97fa-a758659b840c")
+	)
+	(no_connect
+		(at 327.66 106.68)
+		(uuid "e2a0988f-57f4-4931-8420-4cbb69a10811")
 	)
 	(no_connect
 		(at 261.62 31.75)
@@ -6128,6 +6140,16 @@
 	)
 	(wire
 		(pts
+			(xy 327.66 106.68) (xy 346.71 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "537a937f-09d4-41d7-b501-79dfce2bb520")
+	)
+	(wire
+		(pts
 			(xy 69.85 96.52) (xy 69.85 97.79)
 		)
 		(stroke
@@ -6346,6 +6368,16 @@
 	)
 	(wire
 		(pts
+			(xy 349.25 29.21) (xy 349.25 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6afaf8c2-b4a6-4ab8-ad6b-e7fc18b1e0a9")
+	)
+	(wire
+		(pts
 			(xy 378.46 38.1) (xy 386.08 38.1)
 		)
 		(stroke
@@ -6364,6 +6396,16 @@
 			(type default)
 		)
 		(uuid "6b7e59de-8778-4ef6-b850-799645ab84e4")
+	)
+	(wire
+		(pts
+			(xy 349.25 106.68) (xy 346.71 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6d1f66d5-4475-4a82-9b78-ca64be12031f")
 	)
 	(wire
 		(pts
@@ -10638,6 +10680,86 @@
 			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "R8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 346.71 102.87 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "8e0fdbab-dd2a-4960-b97a-a01a975abc3b")
+		(property "Reference" "R12"
+			(at 344.932 104.394 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 344.932 101.854 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+			(at 348.488 102.87 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 346.71 102.87 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 346.71 102.87 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "c90b75e3-e824-42f6-b85c-a12eeb43017a")
+		)
+		(pin "1"
+			(uuid "7cf7acee-21b8-4726-adc4-7ebd93c4ff5a")
+		)
+		(instances
+			(project "control"
+				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
+					(reference "R12")
 					(unit 1)
 				)
 			)
