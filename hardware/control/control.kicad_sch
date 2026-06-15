@@ -228,395 +228,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "43045-0412:43045-0412"
-			(pin_names
-				(offset 1.016)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "J"
-				(at -7.62 3.81 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Value" "43045-0412"
-				(at -7.62 -7.62 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Footprint" "43045-0412:MOLEX_43045-0412"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Header 2 Row Vertical Polarizing Peg 4 Pin Tin Plate SMT/Glow Wire Kinked Leads | Molex Incorporated 43045-0412"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "MF" "Molex"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "MAXIMUM_PACKAGE_HEIGHT" "9.91 mm"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "Package" "None"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "Price" "None"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "Check_prices" "https://www.snapeda.com/parts/43045-0412/Molex/view-part/?ref=eda"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "STANDARD" "Manufacturer Recommendations"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "PARTREV" "G1"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "SnapEDA_Link" "https://www.snapeda.com/parts/43045-0412/Molex/view-part/?ref=snap"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "MP" "43045-0412"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=152314&manufacturer=Molex&part_name=43045-0412&search_term=None"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "Availability" "In Stock"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(property "MANUFACTURER" "Molex"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-				)
-			)
-			(symbol "43045-0412_0_0"
-				(polyline
-					(pts
-						(xy -7.62 0) (xy -5.715 0)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -7.62 -2.54) (xy -5.715 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -7.62 -5.08)
-					(end 7.62 2.54)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(rectangle
-					(start -6.985 -0.3175)
-					(end -5.3975 0.3175)
-					(stroke
-						(width 0.1)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(rectangle
-					(start -6.985 -2.8575)
-					(end -5.3975 -2.2225)
-					(stroke
-						(width 0.1)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(rectangle
-					(start 5.3975 -0.3175)
-					(end 6.985 0.3175)
-					(stroke
-						(width 0.1)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(rectangle
-					(start 5.3975 -2.8575)
-					(end 6.985 -2.2225)
-					(stroke
-						(width 0.1)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 7.62 0) (xy 5.715 0)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 7.62 -2.54) (xy 5.715 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at -12.7 0 0)
-					(length 5.08)
-					(name "1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -12.7 -2.54 0)
-					(length 5.08)
-					(name "2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 12.7 0 180)
-					(length 5.08)
-					(name "3"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 12.7 -2.54 180)
-					(length 5.08)
-					(name "4"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Analog_DAC:MCP4728"
 			(pin_names
 				(offset 1.016)
@@ -4998,12 +4609,6 @@
 		(uuid "1cf6eb0b-f7d8-4221-a278-5018206b1ece")
 	)
 	(junction
-		(at 369.57 148.59)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "1ebcd76e-50ba-497a-9e8a-4a609c4618d9")
-	)
-	(junction
 		(at 193.04 38.1)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5158,12 +4763,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "84737fd4-2240-419b-bcb6-0eca757a5ff9")
-	)
-	(junction
-		(at 369.57 123.19)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "88a1b460-8f61-46c6-ba4d-d74123382ab6")
 	)
 	(junction
 		(at 203.2 99.06)
@@ -5471,16 +5070,6 @@
 	)
 	(wire
 		(pts
-			(xy 368.3 123.19) (xy 369.57 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "072d98d0-94c8-4a72-bbd6-016ced4407ce")
-	)
-	(wire
-		(pts
 			(xy 217.17 140.97) (xy 217.17 143.51)
 		)
 		(stroke
@@ -5687,16 +5276,6 @@
 			(color 0 0 255 1)
 		)
 		(uuid "2166ffa0-ec08-4478-8cf7-7e0912d1e6cf")
-	)
-	(wire
-		(pts
-			(xy 369.57 99.695) (xy 369.57 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "21a93cf6-e590-4322-adc0-d1902b9012ac")
 	)
 	(wire
 		(pts
@@ -6036,16 +5615,6 @@
 			(color 0 0 0 1)
 		)
 		(uuid "4aba956d-3ca3-4bf4-b3c2-be82b1e98519")
-	)
-	(wire
-		(pts
-			(xy 369.57 123.19) (xy 370.84 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4b5712ce-c92d-4f50-9658-044c012e3286")
 	)
 	(wire
 		(pts
@@ -6741,16 +6310,6 @@
 	)
 	(wire
 		(pts
-			(xy 368.3 148.59) (xy 369.57 148.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8fc3c455-dee0-4667-a604-4a486cb375f3")
-	)
-	(wire
-		(pts
 			(xy 140.97 102.87) (xy 146.05 102.87)
 		)
 		(stroke
@@ -6873,16 +6432,6 @@
 			(type default)
 		)
 		(uuid "9f6e83c6-883b-4341-90b4-36dba29706d5")
-	)
-	(wire
-		(pts
-			(xy 369.57 148.59) (xy 370.84 148.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9f83b504-61a5-4009-be9a-97613bc0e8f6")
 	)
 	(wire
 		(pts
@@ -7096,7 +6645,7 @@
 	)
 	(wire
 		(pts
-			(xy 369.57 148.59) (xy 369.57 209.55)
+			(xy 369.57 134.62) (xy 369.57 209.55)
 		)
 		(stroke
 			(width 0.5)
@@ -7174,6 +6723,17 @@
 			(type default)
 		)
 		(uuid "b4b8e054-caff-4852-8723-afb3290f5b45")
+	)
+	(wire
+		(pts
+			(xy 369.57 99.695) (xy 369.57 132.08)
+		)
+		(stroke
+			(width 0.5)
+			(type default)
+			(color 255 0 0 1)
+		)
+		(uuid "b5fc62a2-cf29-4aea-983d-d1909d9965cb")
 	)
 	(wire
 		(pts
@@ -8305,249 +7865,6 @@
 		)
 	)
 	(symbol
-		(lib_id "43045-0412:43045-0412")
-		(at 368.3 135.89 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "1d566a47-d8c6-42f4-97e1-93813c8059f2")
-		(property "Reference" "J0"
-			(at 374.65 134.62 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "43045-0412"
-			(at 374.65 137.16 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "43045-0412:MOLEX_43045-0412"
-			(at 368.3 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "Datasheet" ""
-			(at 368.3 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Header 2 Row Vertical Polarizing Peg 4 Pin Tin Plate SMT/Glow Wire Kinked Leads | Molex Incorporated 43045-0412"
-			(at 368.3 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "MF" "Molex"
-			(at 368.3 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" "9.91 mm"
-			(at 368.3 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "Package" "None"
-			(at 368.3 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "Price" "None"
-			(at 368.3 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/43045-0412/Molex/view-part/?ref=eda"
-			(at 368.3 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "STANDARD" "Manufacturer Recommendations"
-			(at 368.3 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "PARTREV" "G1"
-			(at 368.3 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/43045-0412/Molex/view-part/?ref=snap"
-			(at 368.3 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "MP" "43045-0412"
-			(at 368.3 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=152314&manufacturer=Molex&part_name=43045-0412&search_term=None"
-			(at 368.3 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "Availability" "In Stock"
-			(at 368.3 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "MANUFACTURER" "Molex"
-			(at 368.3 135.89 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-			)
-		)
-		(property "Note" "48V input"
-			(at 379.73 139.7 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "8838a00c-fe15-441f-9c74-d7d0189399f5")
-		)
-		(pin "3"
-			(uuid "a8599473-c14f-4dba-b9ee-1d7e6b9b3d95")
-		)
-		(pin "4"
-			(uuid "46c00064-a40e-4ef2-a720-5db7424c84fd")
-		)
-		(pin "2"
-			(uuid "544e6311-7e4c-4540-b5ce-d1e04d32633e")
-		)
-		(instances
-			(project "control"
-				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
-					(reference "J0")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Connector:TestPoint")
 		(at 210.82 140.97 270)
 		(unit 1)
@@ -8697,6 +8014,86 @@
 			(project "control"
 				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
 					(reference "#FLG01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x02_Pin")
+		(at 364.49 132.08 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "2ed44e35-fe88-4506-8f8d-62e88b1052f2")
+		(property "Reference" "J9"
+			(at 378.46 140.97 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "Conn_01x02_Pin"
+			(at 378.46 138.43 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_Molex:Molex_Micro-Fit_3.0_43650-0215_1x02_P3.00mm_Vertical"
+			(at 364.49 132.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 364.49 132.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 364.49 132.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "074f9b63-7679-48b6-b5b1-12a22bd53176")
+		)
+		(pin "1"
+			(uuid "45439b40-6631-40ed-8dce-0f70dddec648")
+		)
+		(instances
+			(project "control"
+				(path "/22c636c5-bb06-4895-803e-d0c20393f5d8"
+					(reference "J9")
 					(unit 1)
 				)
 			)
@@ -10798,7 +10195,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "molex_0436500215:Molex_Micro-Fit_3.0_43650-0215_1x02_P3.00mm_Vertical"
+		(property "Footprint" "Connector_Molex:Molex_Micro-Fit_3.0_43650-0215_1x02_P3.00mm_Vertical"
 			(at 102.87 102.87 0)
 			(hide yes)
 			(show_name no)
@@ -10878,7 +10275,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "molex_0436500215:Molex_Micro-Fit_3.0_43650-0215_1x02_P3.00mm_Vertical"
+		(property "Footprint" "Connector_Molex:Molex_Micro-Fit_3.0_43650-0215_1x02_P3.00mm_Vertical"
 			(at 31.75 102.87 0)
 			(hide yes)
 			(show_name no)
@@ -11629,7 +11026,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "molex_0436500215:Molex_Micro-Fit_3.0_43650-0215_1x02_P3.00mm_Vertical"
+		(property "Footprint" "Connector_Molex:Molex_Micro-Fit_3.0_43650-0215_1x02_P3.00mm_Vertical"
 			(at 30.48 173.99 0)
 			(hide yes)
 			(show_name no)
@@ -12105,7 +11502,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "molex_0436500215:Molex_Micro-Fit_3.0_43650-0215_1x02_P3.00mm_Vertical"
+		(property "Footprint" "Connector_Molex:Molex_Micro-Fit_3.0_43650-0215_1x02_P3.00mm_Vertical"
 			(at 102.87 172.72 0)
 			(hide yes)
 			(show_name no)
