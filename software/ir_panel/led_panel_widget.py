@@ -28,7 +28,7 @@ from qtpy.QtWidgets import (
     QWidget,
 )
 
-from arduino_led_panel import (
+from led_panel import (
     LEDPanelError,
     LEDPanelInfo,
     SerialLEDPanel,
