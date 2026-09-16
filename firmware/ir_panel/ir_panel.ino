@@ -7,6 +7,10 @@
 // ==========================================
 #define DEBUG_MODE 1  // 1 = Debugging (Spammy Serial), 0 = Production (Silent/Clean Protocol)
 
+// --- Identity (used for robust host-side discovery) ---
+#define DEVICE_TYPE "LED_PANEL_CONTROLLER"
+#define FW_VERSION  "1.0.0"
+
 // --- Pin Definitions ---
 const int ENCODER_A = 2;
 const int ENCODER_B = 3;
@@ -17,10 +21,10 @@ const int FAN_PWM_PIN = 5;
 const int LED_CH1 = 6;
 const int LED_CH2 = 7;
 const int LED_CH3 = 8;
-const int LED_SATURATION = 9; 
+const int LED_SATURATION = 9;
 
 // SPI TMP126
-const int TMP126_CS = 10; 
+const int TMP126_CS = 10;
 
 // ==========================================
 // SMART MCP PROXY CLASS (Runtime Fallback)
@@ -32,36 +36,33 @@ private:
 
 public:
   bool begin(uint8_t address) {
-    // 1. Safe physical I2C Pin Check (Nano Every A4/A5)
     pinMode(A4, INPUT_PULLUP);
     pinMode(A5, INPUT_PULLUP);
-    delay(5); // Let pins settle
-    
+    delay(5);
+
     bool busIsOk = (digitalRead(A4) == HIGH && digitalRead(A5) == HIGH);
 
     if (!busIsOk) {
       Serial.println("WARN: HW_I2C_BUS_DEAD! Falling back to MOCK MCP.");
       fallbackActive = true;
-      return true; // Return true to allow system setup to proceed
+      return true;
     }
 
-    // 2. Start I2C bus and attempt physical chip initialization
     Wire.begin();
-    if (!realMcp.begin(address)) { 
+    if (!realMcp.begin(address)) {
       Serial.println("WARN: HW_MCP_MISSING! Falling back to MOCK MCP.");
       fallbackActive = true;
-      return true; 
+      return true;
     }
 
-    // Physical hardware is healthy
     Serial.println("SYS: Physical MCP4728 initialized successfully.");
     fallbackActive = false;
     return true;
   }
 
-  bool setChannelValue(MCP4728_channel_t channel, uint16_t value, 
-                       MCP4728_vref_t vref = MCP4728_VREF_VDD, 
-                       MCP4728_gain_t gain = MCP4728_GAIN_1X, 
+  bool setChannelValue(MCP4728_channel_t channel, uint16_t value,
+                       MCP4728_vref_t vref = MCP4728_VREF_VDD,
+                       MCP4728_gain_t gain = MCP4728_GAIN_1X,
                        MCP4728_pd_mode_t pd = MCP4728_PD_MODE_NORMAL) {
     if (fallbackActive) {
       #if DEBUG_MODE
@@ -79,11 +80,11 @@ public:
   bool isMockActive() const { return fallbackActive; }
 };
 
-SmartMCP mcp; // Instantiate our smart proxy instead of the raw driver
+SmartMCP mcp;
 
 // --- Global Variables ---
-uint16_t dacValues[3] = {2048, 2048, 2048}; 
-int currentChannel = 0;                     
+uint16_t dacValues[3] = {2048, 2048, 2048};
+int currentChannel = 0;
 
 // Encoder State
 int lastStateA;
@@ -96,13 +97,13 @@ const unsigned long debounceDelay = 50;
 String inputString = "";
 
 void init25kHzPWM() {
-  TCA0.SPLIT.CTRLA = 0; 
+  TCA0.SPLIT.CTRLA = 0;
   TCA0.SPLIT.CTRLA = TCA_SPLIT_CLKSEL_DIV4_gc | TCA_SPLIT_ENABLE_bm;
-  TCA0.SPLIT.CTRLD = TCA_SPLIT_SPLITM_bm; 
-  TCA0.SPLIT.LPER = 99; 
+  TCA0.SPLIT.CTRLD = TCA_SPLIT_SPLITM_bm;
+  TCA0.SPLIT.LPER = 99;
   TCA0.SPLIT.CTRLB &= ~(TCA_SPLIT_LCMP0EN_bm | TCA_SPLIT_LCMP1EN_bm);
-  TCA0.SPLIT.CTRLB |= TCA_SPLIT_LCMP2EN_bm; // Fixed: LCMP2EN for Pin D5 / WO2
-  TCA0.SPLIT.LCMP2 = 0; 
+  TCA0.SPLIT.CTRLB |= TCA_SPLIT_LCMP2EN_bm;
+  TCA0.SPLIT.LCMP2 = 0;
   pinMode(FAN_PWM_PIN, OUTPUT);
 }
 
@@ -111,54 +112,62 @@ void setFanDutyCycle(uint8_t duty) {
   TCA0.SPLIT.LCMP2 = duty;
 }
 
+// Reads the ATmega4809 factory-programmed 10-byte unique serial number
+String getUniqueID() {
+  uint8_t *sernum = (uint8_t*)&SIGROW.SERNUM0;
+  char buf[21];
+  for (int i = 0; i < 10; i++) {
+    sprintf(buf + i * 2, "%02X", sernum[i]);
+  }
+  buf[20] = '\0';
+  return String(buf);
+}
+
 void setup() {
   Serial.begin(115200);
-  
+
   unsigned long startWait = millis();
-  while (!Serial && (millis() - startWait < 2000)) { 
-    delay(10); 
+  while (!Serial && (millis() - startWait < 2000)) {
+    delay(10);
   }
-  
+
   Serial.println("SYS:BOOTING...");
   inputString.reserve(30);
-  
-  // Configure Peripheral Control Pins
+
   pinMode(ENCODER_A, INPUT_PULLUP);
   pinMode(ENCODER_B, INPUT_PULLUP);
   pinMode(ENCODER_SW, INPUT_PULLUP);
-  
+
   pinMode(LED_CH1, OUTPUT);
   pinMode(LED_CH2, OUTPUT);
   pinMode(LED_CH3, OUTPUT);
   pinMode(LED_SATURATION, OUTPUT);
-  
+
   pinMode(TMP126_CS, OUTPUT);
   digitalWrite(TMP126_CS, HIGH);
 
-  // Initialize SPI & Timer PWM
   SPI.begin();
-  init25kHzPWM(); 
+  init25kHzPWM();
 
-  // Initialize the Smart MCP (handles bus testing & auto-fallback internally)
   mcp.begin(0x60);
 
   lastStateA = digitalRead(ENCODER_A);
   updateLEDs();
   updateDAC();
-  
+
   Serial.println("SYS:READY");
 }
 
 void loop() {
   handleEncoderButton();
   handleEncoderRotation();
-  
+
   while (Serial.available()) {
     char inChar = (char)Serial.read();
     if (inChar == '\n' || inChar == '\r') {
       if (inputString.length() > 0) {
         processSerialCommand(inputString);
-        inputString = "";      
+        inputString = "";
       }
     } else {
       inputString += inChar;
@@ -182,30 +191,38 @@ void transmitSystemState() {
 // --- Serial Command Parser ---
 void processSerialCommand(String command) {
   command.trim();
-  
-  if (command.startsWith("SET_FAN:")) {
+
+  if (command == "ID" || command == "WHOAMI") {
+    Serial.print("RSP:ID,");
+    Serial.print(DEVICE_TYPE);
+    Serial.print(",");
+    Serial.print(FW_VERSION);
+    Serial.print(",");
+    Serial.println(getUniqueID());
+  }
+  else if (command.startsWith("SET_FAN:")) {
     int valueStringIndex = command.indexOf(':');
     int fanValue = command.substring(valueStringIndex + 1).toInt();
     fanValue = constrain(fanValue, 0, 100);
     setFanDutyCycle(fanValue);
-    
+
     Serial.print("RSP:FAN,");
     Serial.println(fanValue);
-  } 
+  }
   else if (command.startsWith("SET_DAC:")) {
     int colonIndex = command.indexOf(':');
     int commaIndex = command.indexOf(',');
-    
+
     if (colonIndex != -1 && commaIndex != -1) {
-      int targetChannel = command.substring(colonIndex + 1, commaIndex).toInt() - 1; 
+      int targetChannel = command.substring(colonIndex + 1, commaIndex).toInt() - 1;
       int dacValue = command.substring(commaIndex + 1).toInt();
-      
+
       if (targetChannel >= 0 && targetChannel <= 2) {
         dacValues[targetChannel] = constrain(dacValue, 0, 4095);
-        
+
         updateDAC();
         checkSaturation();
-        
+
         Serial.print("RSP:DAC_SET,");
         Serial.print(targetChannel + 1);
         Serial.print(",");
@@ -228,8 +245,8 @@ void processSerialCommand(String command) {
   else if (command == "GET_TEMP") {
     float temperature = readTMP126();
     Serial.print("RSP:TMP,");
-    Serial.println(temperature, 2); 
-  } 
+    Serial.println(temperature, 2);
+  }
   else {
     Serial.println("ERR:CMD");
   }
@@ -238,13 +255,13 @@ void processSerialCommand(String command) {
 float readTMP126() {
   SPI.beginTransaction(SPISettings(10000000, MSBFIRST, SPI_MODE0));
   digitalWrite(TMP126_CS, LOW);
-  uint8_t msb = SPI.transfer(0x00); 
+  uint8_t msb = SPI.transfer(0x00);
   uint8_t lsb = SPI.transfer(0x00);
   digitalWrite(TMP126_CS, HIGH);
   SPI.endTransaction();
 
   int16_t rawData = (msb << 8) | lsb;
-  return (rawData >> 2) * 0.03125; 
+  return (rawData >> 2) * 0.03125;
 }
 
 // --- UI & Peripheral Control Logic ---
@@ -262,11 +279,11 @@ void handleEncoderButton() {
       if (debouncedButtonState == LOW) {
         currentChannel++;
         if (currentChannel > 2) currentChannel = 0;
-        
+
         updateLEDs();
-        
+
         #if DEBUG_MODE
-          transmitSystemState(); 
+          transmitSystemState();
         #endif
       }
     }
@@ -288,9 +305,9 @@ void handleEncoderRotation() {
 
     updateDAC();
     checkSaturation();
-    
+
     #if DEBUG_MODE
-      transmitSystemState(); 
+      transmitSystemState();
     #endif
   }
   lastStateA = currentStateA;
