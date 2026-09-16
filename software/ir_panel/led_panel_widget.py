@@ -148,6 +148,7 @@ class DacChannelWidget(QGroupBox):
         self.slider.setRange(0, 4095)
         self.spinbox = QSpinBox()
         self.spinbox.setRange(0, 4095)
+        self.spinbox.setKeyboardTracking(False)
         self.sat_label = QLabel("")
         self.sat_label.setStyleSheet("color: red; font-weight: bold;")
 
@@ -224,9 +225,10 @@ class LEDPanelWidget(QWidget):
         # -- Fan -------------------------------------------------------#
         self.fan_group = QGroupBox("Fan")
         self.fan_slider = QSlider(Qt.Horizontal)
-        self.fan_slider.setRange(0, 100)
+        self.fan_slider.setRange(0, 99)
         self.fan_spin = QSpinBox()
-        self.fan_spin.setRange(0, 100)
+        self.fan_spin.setRange(0, 99)
+        self.fan_spin.setKeyboardTracking(False)
         self.fan_slider.valueChanged.connect(self.fan_spin.setValue)
         self.fan_spin.valueChanged.connect(self.fan_slider.setValue)
         self.fan_spin.valueChanged.connect(self._on_fan_changed)
