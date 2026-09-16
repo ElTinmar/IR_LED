@@ -88,6 +88,7 @@ class PIDState:
     kd: float
     fan_duty: int
     temperature: float
+    fault: bool = False 
 
 
 # ============================================================== #
@@ -148,12 +149,12 @@ class SerialLEDPanel(LEDPanel):
     )
     _RSP_PID_STATE = re.compile(
         r"RSP:PID_STATE,([01]),([\-0-9.]+),([\-0-9.]+),([\-0-9.]+),"
-        r"([\-0-9.]+),(\d+),([\-0-9.]+)"
+        r"([\-0-9.]+),(\d+),([\-0-9.]+),([01])"
     )
 
     _TELEMETRY = re.compile(r"CH:(\d+),VAL:(\d+),SAT:([01]),MOCK:([01])")
     _PID_TELEMETRY = re.compile(
-        r"PID:TEMP:([\-0-9.]+),FAN:(\d+),SP:([\-0-9.]+),MODE:([01])"
+        r"PID:TEMP:([\-0-9.]+),FAN:(\d+),SP:([\-0-9.]+),MODE:([01]),FAULT:([01])"
     )
 
     def __init__(
@@ -352,6 +353,7 @@ class SerialLEDPanel(LEDPanel):
             "fan_duty": int(m.group(2)),
             "setpoint": float(m.group(3)),
             "enabled": bool(int(m.group(4))),
+            "fault": bool(int(m.group(5))),
         }
         if self._pid_telemetry_callback:
             self._pid_telemetry_callback(data)
@@ -485,6 +487,7 @@ class SerialLEDPanel(LEDPanel):
             kd=float(m.group(5)),
             fan_duty=int(m.group(6)),
             temperature=float(m.group(7)),
+            fault=bool(int(m.group(8))),
         )
 
     # ---------------------------------------------------------- #

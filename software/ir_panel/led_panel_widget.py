@@ -2,17 +2,21 @@
 qtpy widget for the Arduino LED Panel Controller.
 
 All serial I/O happens on a background QThread (PanelWorker); discovery
-also runs on its own QThread (PortScanner) since probing several ports
-with a boot-wait can take a couple of seconds.
+also runs on its own QThread (PortScanner). A pyqtgraph-based live plot
+tracks temperature, setpoint, and fan duty cycle over time.
 """
 
 from __future__ import annotations
 
+import os
 import queue
 import sys
 import time
+from collections import deque
 from typing import List, Optional
 
+# --- Qt binding setup -------------------------------------------------
+import qtpy
 from qtpy.QtCore import QThread, Signal, Qt
 from qtpy.QtWidgets import (
     QApplication,
@@ -25,13 +29,32 @@ from qtpy.QtWidgets import (
     QLabel,
     QMessageBox,
     QPushButton,
-    QSlider,
+    QScrollArea,
+    QSplitter,
     QSpinBox,
     QVBoxLayout,
     QWidget,
 )
 
-from arduino_led_panel import (
+# pyqtgraph does its own Qt-binding detection, independent of qtpy. If it
+# picks a *different* binding than qtpy did (e.g. PyQt5 vs PySide6), both
+# get loaded into the same process and things crash in unpredictable ways.
+# Force pyqtgraph to use whatever binding qtpy already resolved.
+_QTPY_TO_PYQTGRAPH = {
+    "pyqt5": "PyQt5",
+    "pyside2": "PySide2",
+    "pyqt6": "PyQt6",
+    "pyside6": "PySide6",
+    "pyqt": "PyQt4",
+    "pyside": "PySide",
+}
+os.environ.setdefault(
+    "PYQTGRAPH_QT_LIB", _QTPY_TO_PYQTGRAPH.get(qtpy.API_NAME.lower(), "PyQt5")
+)
+
+import pyqtgraph as pg  # noqa: E402  (must come after the env var is set)
+
+from led_panel import (
     LEDPanelError,
     LEDPanelInfo,
     PIDState,
@@ -231,6 +254,10 @@ class DacChannelWidget(QGroupBox):
         self.sat_label.setText("SATURATED" if value in (0, 4095) else "")
 
 
+# Import QSlider late (kept near usage above for readability elsewhere too)
+from qtpy.QtWidgets import QSlider  # noqa: E402
+
+
 # ============================================================== #
 # Thermal control: manual fan + PID controller
 # ============================================================== #
@@ -304,6 +331,9 @@ class ThermalControlWidget(QGroupBox):
         # -- live readout ---------------------------------------------#
         self.temp_readout = QLabel("-- \u00b0C")
         self.fan_readout = QLabel("-- %")
+        self.fault_label = QLabel("SENSOR FAULT \u2014 forcing 100% fan")
+        self.fault_label.setStyleSheet("color: red; font-weight: bold;")
+        self.fault_label.setVisible(False)         
         readout_form = QFormLayout()
         readout_form.addRow("Temperature:", self.temp_readout)
         readout_form.addRow("Fan duty:", self.fan_readout)
@@ -355,13 +385,120 @@ class ThermalControlWidget(QGroupBox):
         self.set_pid_enabled_silent(state.enabled)
         self.set_pid_setpoint_silent(state.setpoint)
         self.set_pid_gains_silent(state.kp, state.ki, state.kd)
-        self.update_readout(state.temperature, state.fan_duty)
+        self.update_readout(state.temperature, state.fan_duty, state.fault)
         if not state.enabled:
             self.set_manual_fan_silent(state.fan_duty)
 
-    def update_readout(self, temperature: float, fan_duty: int):
+    def update_readout(self, temperature: float, fan_duty: int, fault: bool = False):
         self.temp_readout.setText(f"{temperature:.2f} \u00b0C")
         self.fan_readout.setText(f"{fan_duty} %")
+        self.fault_label.setVisible(fault)
+
+
+# ============================================================== #
+# Live temperature / fan-duty graph (pyqtgraph)
+# ============================================================== #
+class TemperatureGraphWidget(QWidget):
+    """
+    Rolling live plot of measured temperature, PID setpoint, and fan duty
+    cycle vs. elapsed time. Temperature/setpoint share the left Y axis
+    (degC); fan duty gets its own right-hand Y axis (0-100%) since the
+    scales aren't comparable.
+    """
+
+    def __init__(self, max_points: int = 1800, parent=None):
+        super().__init__(parent)
+        self.max_points = max_points
+        self._t0: Optional[float] = None
+        self._time: deque = deque(maxlen=max_points)
+        self._temp: deque = deque(maxlen=max_points)
+        self._setpoint: deque = deque(maxlen=max_points)
+        self._fan: deque = deque(maxlen=max_points)
+
+        pg.setConfigOptions(antialias=True)
+
+        self.plot_widget = pg.PlotWidget()
+        self.plot_widget.setBackground("w")
+        self.plot_widget.showGrid(x=True, y=True, alpha=0.3)
+        self.plot_widget.setLabel("bottom", "Elapsed time", units="s")
+        self.plot_widget.setLabel("left", "Temperature", units="\u00b0C")
+
+        plot_item = self.plot_widget.getPlotItem()
+        plot_item.addLegend(offset=(10, 10))
+
+        self.temp_curve = self.plot_widget.plot(
+            pen=pg.mkPen(color="r", width=2), name="Temperature"
+        )
+        self.setpoint_curve = self.plot_widget.plot(
+            pen=pg.mkPen(color="r", width=1, style=Qt.DashLine), name="Setpoint"
+        )
+
+        # Secondary Y axis (right side) for fan duty cycle, linked on X.
+        self.fan_viewbox = pg.ViewBox()
+        plot_item.scene().addItem(self.fan_viewbox)
+        self.fan_axis = pg.AxisItem("right")
+        plot_item.layout.addItem(self.fan_axis, 2, 3)
+        self.fan_axis.setLabel("Fan duty", units="%")
+        self.fan_axis.linkToView(self.fan_viewbox)
+        self.fan_viewbox.setXLink(plot_item.vb)
+        self.fan_viewbox.setYRange(0, 100)
+
+        self.fan_curve = pg.PlotCurveItem(
+            pen=pg.mkPen(color="b", width=1), name="Fan duty"
+        )
+        self.fan_viewbox.addItem(self.fan_curve)
+        plot_item.legend.addItem(self.fan_curve, "Fan duty (%)")
+
+        plot_item.vb.sigResized.connect(self._sync_fan_viewbox_geometry)
+
+        self.clear_btn = QPushButton("Clear Graph")
+        self.clear_btn.clicked.connect(self.clear)
+
+        layout = QVBoxLayout(self)
+        layout.addWidget(self.plot_widget)
+        layout.addWidget(self.clear_btn)
+
+    def _sync_fan_viewbox_geometry(self):
+        self.fan_viewbox.setGeometry(
+            self.plot_widget.getPlotItem().vb.sceneBoundingRect()
+        )
+
+    # ------------------------------------------------------------ #
+    def add_sample(
+        self,
+        temperature: float,
+        fan_duty: Optional[int] = None,
+        setpoint: Optional[float] = None,
+        timestamp: Optional[float] = None,
+    ):
+        now = timestamp if timestamp is not None else time.monotonic()
+        if self._t0 is None:
+            self._t0 = now
+        t = now - self._t0
+
+        self._time.append(t)
+        self._temp.append(temperature)
+        self._setpoint.append(
+            setpoint if setpoint is not None else (self._setpoint[-1] if self._setpoint else float("nan"))
+        )
+        self._fan.append(
+            fan_duty if fan_duty is not None else (self._fan[-1] if self._fan else 0)
+        )
+
+        xs = list(self._time)
+        self.temp_curve.setData(xs, list(self._temp))
+        self.setpoint_curve.setData(xs, list(self._setpoint))
+        self.fan_curve.setData(xs, list(self._fan))
+
+    def clear(self):
+        self._t0 = None
+        self._time.clear()
+        self._temp.clear()
+        self._setpoint.clear()
+        self._fan.clear()
+        self.temp_curve.setData([], [])
+        self.setpoint_curve.setData([], [])
+        self.fan_curve.setData([], [])
 
 
 # ============================================================== #
@@ -372,6 +509,7 @@ class LEDPanelWidget(QWidget):
         super().__init__(parent)
         self.worker: Optional[PanelWorker] = None
         self.scanner: Optional[PortScanner] = None
+        self._last_fan_duty: int = 0
 
         # -- board selection ----------------------------------------- #
         self.port_combo = QComboBox()
@@ -406,14 +544,34 @@ class LEDPanelWidget(QWidget):
         self.log_label = QLabel("")
         self.log_label.setWordWrap(True)
 
-        # -- assemble --------------------------------------------------#
-        layout = QVBoxLayout(self)
-        layout.addLayout(top)
+        # -- left column: everything above, in a scroll area ----------#
+        left_container = QWidget()
+        left_layout = QVBoxLayout(left_container)
+        left_layout.addLayout(top)
         for ch in self.channels:
-            layout.addWidget(ch)
-        layout.addWidget(self.thermal)
-        layout.addWidget(self.status_label)
-        layout.addWidget(self.log_label)
+            left_layout.addWidget(ch)
+        left_layout.addWidget(self.thermal)
+        left_layout.addWidget(self.status_label)
+        left_layout.addWidget(self.log_label)
+        left_layout.addStretch(1)
+
+        left_scroll = QScrollArea()
+        left_scroll.setWidget(left_container)
+        left_scroll.setWidgetResizable(True)
+
+        # -- right column: live graph ----------------------------------#
+        self.graph = TemperatureGraphWidget()
+
+        # -- assemble with a splitter so both are resizable -----------#
+        splitter = QSplitter(Qt.Horizontal)
+        splitter.addWidget(left_scroll)
+        splitter.addWidget(self.graph)
+        splitter.setStretchFactor(0, 1)
+        splitter.setStretchFactor(1, 1)
+        splitter.setChildrenCollapsible(False)
+
+        outer_layout = QVBoxLayout(self)
+        outer_layout.addWidget(splitter)
 
         self.refresh_btn.clicked.connect(self.refresh_ports)
         self.connect_btn.clicked.connect(self.toggle_connection)
@@ -462,6 +620,8 @@ class LEDPanelWidget(QWidget):
                 self, "No board", "Click Refresh and select a board first."
             )
             return
+
+        self.graph.clear()  # fresh time axis for this session
 
         panel = info.instantiate()
         self.worker = PanelWorker(panel)
@@ -526,9 +686,16 @@ class LEDPanelWidget(QWidget):
 
     def _on_fan_from_worker(self, value: int):
         self.thermal.set_manual_fan_silent(value)
+        self._last_fan_duty = value 
 
     def _on_temperature(self, temp: float):
         self.thermal.temp_readout.setText(f"{temp:.2f} \u00b0C")
+        setpoint = (
+            self.thermal.setpoint_spin.value()
+            if self.thermal.pid_enable_checkbox.isChecked()
+            else None
+        )
+        self.graph.add_sample(temp, fan_duty=self._last_fan_duty, setpoint=setpoint)
 
     def _on_telemetry(self, data: dict):
         # Encoder-driven change on the board itself: reflect it in the UI.
@@ -538,6 +705,8 @@ class LEDPanelWidget(QWidget):
 
     def _on_pid_mode_from_worker(self, enabled: bool):
         self.thermal.set_pid_enabled_silent(enabled)
+        if not enabled and self.worker:
+            self.worker.request_set_fan(self.thermal.fan_spin.value())
 
     def _on_pid_setpoint_from_worker(self, value: float):
         self.thermal.set_pid_setpoint_silent(value)
@@ -547,12 +716,22 @@ class LEDPanelWidget(QWidget):
 
     def _on_pid_state_loaded(self, state: PIDState):
         self.thermal.apply_pid_state(state)
+        self._last_fan_duty = state.fan_duty
+        self.graph.add_sample(
+            state.temperature,
+            fan_duty=state.fan_duty,
+            setpoint=state.setpoint if state.enabled else None,
+        )
 
     def _on_pid_telemetry(self, data: dict):
         self.thermal.update_readout(data["temperature"], data["fan_duty"])
-        # Keep the enable checkbox in sync in case the board's PID mode
-        # was toggled by something other than this UI (e.g. a reboot).
         self.thermal.set_pid_enabled_silent(data["enabled"])
+        self._last_fan_duty = data["fan_duty"]
+        self.graph.add_sample(
+            data["temperature"],
+            fan_duty=data["fan_duty"],
+            setpoint=data["setpoint"] if data["enabled"] else None,
+        )
 
     # ------------------------------------------------------------ #
     # Slots reacting to user interaction
@@ -586,6 +765,6 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     w = LEDPanelWidget()
     w.setWindowTitle("Arduino LED Panel Controller")
-    w.resize(440, 700)
+    w.resize(1000, 700)
     w.show()
     sys.exit(app.exec_())

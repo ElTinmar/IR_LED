@@ -113,6 +113,7 @@ struct PIDController {
 
 PIDController tempPID;
 bool pidModeEnabled = false;
+bool pidFaultActive = false;
 unsigned long lastPidRunTime = 0;
 const unsigned long PID_INTERVAL_MS = 1000;   // 1 Hz control loop
 uint8_t currentFanDuty = 0;
@@ -211,22 +212,20 @@ void updatePIDIfNeeded() {
 
   float temp = readTMP126();
 
-  // Fail-safe: if the sensor reading is out of any plausible physical
-  // range (disconnected/miswired SPI, etc.), don't trust it - go to max
-  // cooling instead of computing garbage control output.
   if (temp < -40.0f || temp > 150.0f) {
+    pidFaultActive = true;
     currentFanDuty = 100;
     setFanDutyCycle(currentFanDuty);
     Serial.println("WARN:PID_TEMP_INVALID");
-    return;
+  } else {
+    pidFaultActive = false;
+    float output = pidCompute(tempPID, temp, dt);
+    currentFanDuty = (uint8_t)lroundf(output);
+    setFanDutyCycle(currentFanDuty);
   }
 
-  float output = pidCompute(tempPID, temp, dt);
-  currentFanDuty = (uint8_t)lroundf(output);
-  setFanDutyCycle(currentFanDuty);
-
-  // Unsolicited PID telemetry - rate-limited to PID_INTERVAL_MS already,
-  // so safe to always emit (not gated behind DEBUG_MODE).
+  // Always emit telemetry - even on the fault path - so the host's view
+  // of fan duty / fault state never goes stale.
   Serial.print("PID:TEMP:");
   Serial.print(temp, 2);
   Serial.print(",FAN:");
@@ -234,7 +233,9 @@ void updatePIDIfNeeded() {
   Serial.print(",SP:");
   Serial.print(tempPID.setpoint, 2);
   Serial.print(",MODE:");
-  Serial.println(pidModeEnabled ? 1 : 0);
+  Serial.print(pidModeEnabled ? 1 : 0);
+  Serial.print(",FAULT:");
+  Serial.println(pidFaultActive ? 1 : 0);
 }
 
 void setup() {
@@ -371,14 +372,15 @@ void processSerialCommand(String command) {
     int idx = command.indexOf(':');
     int mode = command.substring(idx + 1).toInt();
     pidModeEnabled = (mode != 0);
+    pidFaultActive = false;   // <-- added: clear stale fault state on any mode change
 
     if (pidModeEnabled) {
       float currentTemp = readTMP126();
       pidReset(tempPID, currentTemp);
-      lastPidRunTime = 0;  // force PID to run on the very next loop() pass
+      lastPidRunTime = 0;
     } else {
       currentFanDuty = 0;
-      setFanDutyCycle(0);  // safe default: fan off, host must SET_FAN explicitly
+      setFanDutyCycle(0);
     }
 
     Serial.print("RSP:PID_MODE,");
@@ -427,7 +429,9 @@ void processSerialCommand(String command) {
     Serial.print(",");
     Serial.print(currentFanDuty);
     Serial.print(",");
-    Serial.println(readTMP126(), 2);
+    Serial.print(readTMP126(), 2);
+    Serial.print(",");
+    Serial.println(pidFaultActive ? 1 : 0);
   }
   else {
     Serial.println("ERR:CMD");
