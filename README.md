@@ -7,7 +7,8 @@ The main features are:
 
 - infra-red LED panel, with 3 separately addressable concentric rings  
 - manual or remote control of the brightness for the 3 channels
-- LED driver can be strobed with the open-collector trigger output of a machine vision camera
+- LED driver can be strobed with the open-collector trigger output of a machine vision camera,
+which significantly reduces heat output
 - the temperature of the LED panel is measured in real time and can by controlled with a fan. 
 The fan PWM can be set manually or via a software PID controller on the arduino
 
