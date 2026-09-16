@@ -130,7 +130,23 @@ void init25kHzPWM() {
 
 void setFanDutyCycle(uint8_t duty) {
   if (duty > 100) duty = 100;
-  TCA0.SPLIT.LCMP2 = duty;
+
+  if (duty >= 100) {
+    // True 100%: detach WO2 from the pin and drive it statically HIGH.
+    // CMP == PER is a degenerate case on TCA split-mode PWM that doesn't
+    // reliably produce a full-width pulse (double-buffered CMP/PER/CNT),
+    // so we bypass the timer compare channel entirely instead.
+    TCA0.SPLIT.CTRLB &= ~TCA_SPLIT_LCMP2EN_bm;
+    digitalWrite(FAN_PWM_PIN, HIGH);
+  } else if (duty == 0) {
+    // Same degenerate-edge concern at the bottom; force it explicitly too.
+    TCA0.SPLIT.CTRLB &= ~TCA_SPLIT_LCMP2EN_bm;
+    digitalWrite(FAN_PWM_PIN, LOW);
+  } else {
+    // Normal case: reconnect the timer to the pin and set the duty.
+    TCA0.SPLIT.CTRLB |= TCA_SPLIT_LCMP2EN_bm;
+    TCA0.SPLIT.LCMP2 = duty;
+  }
 }
 
 // Reads the ATmega4809 factory-programmed 10-byte unique serial number
