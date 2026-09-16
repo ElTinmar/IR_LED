@@ -1,0 +1,4 @@
+"Id";"Designator";"Footprint";"Quantity";"Designation";"Supplier and ref";
+1;"H1, H2";"MountingHole_2.2mm_M2";2;"MountingHole";;;
+2;"J1";"Molex_KK-254_AE-6410-04A_1x04_P2.54mm_Vertical";1;"Conn_01x04_Pin";;;
+3;"SW1";"RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm";1;"RotaryEncoder_Switch";;;

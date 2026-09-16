@@ -1,0 +1,7 @@
+"Id";"Designator";"Footprint";"Quantity";"Designation";"Supplier and ref";
+1;"C1";"C_0805_2012Metric";1;"0.1uF";;;
+2;"H1, H2, H3, H4, H5, H6";"MountingHole_3.2mm_M3";6;"MountingHole";;;
+3;"IC1";"SOT65P210X110-6N";1;"TMP126NDCKR";;;
+4;"J0, J1, J2-1, J2-2";"Molex_Micro-Fit_3.0_43650-0224_1x02-1MP_P3.00mm_Vertical";4;"Conn_01x02_Pin";;;
+5;"J2";"Molex_PicoBlade_53261-0871_1x08-1MP_P1.25mm_Horizontal";1;"Conn_01x08_Pin";;;
+6;"LED1, LED2, LED3, LED4, LED5, LED6, LED7, LED8, LED9, LED10, LED11, LED12, LED13, LED14, LED15, LED16, LED17, LED18, LED19, LED20, LED21, LED22, LED23, LED24, LED25, LED26, LED27, LED28, LED29, LED30, LED31, LED32, LED33, LED34, LED35, LED36";"SFH4725ASA01";36;"SFH_4725AS_A01";;;

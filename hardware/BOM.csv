@@ -1,0 +1,50 @@
+num boards:,2,,,,,,,,,,,
+,,,,,,,,,,,,
+board,Id,Designator,Footprint,Quantity (per board),Safety margin (+ x%),Quantity (total),Designation,Supplier,Ref,Unit price ,Price total,Link
+rotary_encoder,1,"H1, H2",MountingHole_2.2mm_M2,2,0,4,MountingHole,,,,,
+rotary_encoder,2,J1,Molex_KK-254_AE-6410-04A_1x04_P2.54mm_Vertical,1,100,4,Conn_01x04_Pin,Mouser,538-22-29-2041 ,0.579,2.316,https://www.mouser.de/en/ProductDetail/Molex/22-29-2041
+rotary_encoder,3,SW1,RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm,1,0,2,RotaryEncoder_Switch,Mouser,688-EC11E183440C ,6.03,12.06,https://www.mouser.de/en/ProductDetail/Alps-Alpine/EC11E183440C
+status_LED,1,"D1, D2, D3, D4",LED_D5.0mm,4,0,8,LED,Mouser,941-C503BABNCW0X0342 ,0.127,1.016,https://www.mouser.de/en/ProductDetail/Cree-LED/C503B-ABN-CW0X0342
+status_LED,2,"H1, H2",MountingHole_2.2mm_M2,2,0,4,MountingHole,,,,,
+status_LED,3,J1,Molex_KK-254_AE-6410-05A_1x05_P2.54mm_Vertical,1,0,2,Conn_01x05_Pin,Mouser,538-22-27-2051 ,0.36,0.72,https://www.mouser.de/en/ProductDetail/Molex/22-27-2051
+control,1,A1,Arduino_Nano,1,0,2,Arduino_Nano_Every,Mouser,782-ABX00033 ,12.81,25.62,https://www.mouser.de/en/ProductDetail/Arduino/ABX00033
+control,2,"C1, C4",C_Disc_D5.0mm_W2.5mm_P2.50mm,2,0,4,0.1uF,Mouser,75-1C10X7R104K100B ,0.198,0.792,https://www.mouser.de/en/ProductDetail/Vishay-Sprague/1C10X7R104K100B
+control,3,C2,C_Disc_D5.0mm_W2.5mm_P2.50mm,1,0,2,10uF,Mouser,RCER71E106K3DBH03A ,0.476,0.952,https://www.mouser.de/en/ProductDetail/Murata-Electronics/RCER71E106K3DBH03A
+control,4,D1,D_DO-41_SOD81_P10.16mm_Horizontal,1,0,2,1N5817,Mouser,625-1N5817-E3/73 ,0.132,0.264,https://www.mouser.de/en/ProductDetail/Vishay-Semiconductors/1N5817-E3-73
+control,5,F1,FUSE_646_1_LTF,1,0,2,64600001003,Mouser,576-64600001003 ,0.903,1.806,https://www.mouser.de/en/ProductDetail/Littelfuse/64600001003
+control,6,"H1, H2, H3, H4, H5, H6",MountingHole_3.2mm_M3,6,0,12,MountingHole,,,,,
+control,7,IC1,SOP50P326X110-16N,1,100,4,TMUX4053DYYR,Mouser,595-TMUX4053DYYR ,0.356,1.424,https://www.mouser.de/en/ProductDetail/Texas-Instruments/TMUX4053DYYR
+control,8,"J1, J2, J3, J4",Molex_Micro-Fit_3.0_43650-0200_1x02_P3.00mm_Horizontal,4,100,16,Conn_01x02_Pin,Mouser,538-43650-0200 ,0.785,12.56,https://www.mouser.de/en/ProductDetail/Molex/43650-0200
+control,9,J5,Molex_KK-254_AE-6410-05A_1x05_P2.54mm_Vertical,1,100,4,Conn_01x05_Pin,Mouser,538-22-27-2051 ,0.36,1.44,https://www.mouser.de/en/ProductDetail/Molex/22-27-2051
+control,10,"J6, J11",Molex_KK-254_AE-6410-04A_1x04_P2.54mm_Vertical,2,100,8,Conn_01x04_Pin,Mouser,538-22-29-2041 ,0.579,4.632,https://www.mouser.de/en/ProductDetail/Molex/22-29-2041
+control,11,J7,Molex_PicoBlade_53047-0810_1x08_P1.25mm_Vertical,1,100,4,Conn_01x08_Pin,Mouser,538-53047-0810 ,0.361,1.444,https://www.mouser.de/en/ProductDetail/Molex/53047-0810
+control,12,"J8, J12",Molex_KK-254_AE-6410-02A_1x02_P2.54mm_Vertical,2,100,8,Conn_01x02_Pin,Mouser,538-22-29-2021 ,0.376,3.008,https://www.mouser.de/en/ProductDetail/Molex/22-29-2021
+control,13,J9,"TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",1,0,2,Screw_Terminal_01x02,Mouser,651-1985904 ,1.01,2.02,https://www.mouser.de/en/ProductDetail/Phoenix-Contact/1985904
+control,14,"PS1, PS2, PS3, PS4",CONV_CRED-48-1.05,4,0,8,RCDE-48-1.05,Mouser,919-RCDE-48-1.05 ,7.43,59.44,https://www.mouser.de/en/ProductDetail/RECOM-Power/RCDE-48-1.05
+control,15,"R1, R2, R3, R10, R11, R12",R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,6,0,12,10k,,,,,
+control,16,"R4, R5",R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,2,0,4,4.7k,,,,,
+control,17,"R6, R7, R8, R9",R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,4,0,8,220,,,,,
+control,18,"TP1, TP2, TP3, TP4, TP5, TP6",TestPoint_Pad_D2.0mm,6,0,12,TestPoint,,,,,
+control,19,U2,MSOP-10_3x3mm_P0.5mm,1,0,2,MCP4728,Mouser,579-MCP4728-E/UN ,2.15,4.3,https://www.mouser.de/en/ProductDetail/Microchip-Technology/MCP4728-E-UN
+control,20,U4,Converter_DCDC_RECOM_R-78HB-0.5_THT,1,0,2,R-78HB12-0.5,Mouser,919-R-78HB12-0.5 ,14.67,29.34,https://www.mouser.de/en/ProductDetail/RECOM-Power/R-78HB12-0.5
+control,21,U5,Converter_DCDC_RECOM_R-78HB-0.5_THT,1,0,2,R-78HB5.0-0.5,Mouser,919-R-78HB5.0-0.5 ,13.67,27.34,https://www.mouser.de/en/ProductDetail/RECOM-Power/R-78HB5.0-0.5
+LED_panel,1,C1,C_0805_2012Metric,1,0,2,0.1uF,Mouser,81-GCJ21BR71E104KA1L ,0.361,0.722,https://www.mouser.de/en/ProductDetail/Murata-Electronics/GCJ21BR71E104KA01L
+LED_panel,2,"H1, H2, H3, H4, H5, H6",MountingHole_3.2mm_M3,6,0,12,MountingHole,,,,,
+LED_panel,3,IC1,SOT65P210X110-6N,1,100,4,TMP126NDCKR,Mouser,595-TMP126NDCKR ,1.12,4.48,https://www.mouser.de/en/ProductDetail/Texas-Instruments/TMP126NDCKR
+LED_panel,4,"J0, J1, J2-1, J2-2",Molex_Micro-Fit_3.0_43650-0224_1x02-1MP_P3.00mm_Vertical,4,100,16,Conn_01x02_Pin,Mouser,538-43650-0224 ,2.05,32.8,https://www.mouser.de/en/ProductDetail/Molex/43650-0224
+LED_panel,5,J2,Molex_PicoBlade_53261-0871_1x08-1MP_P1.25mm_Horizontal,1,100,4,Conn_01x08_Pin,Mouser,538-53261-0871 ,0.869,3.476,https://www.mouser.de/en/ProductDetail/Molex/53261-0871
+LED_panel,6,"LED1, LED2, LED3, LED4, LED5, LED6, LED7, LED8, LED9, LED10, LED11, LED12, LED13, LED14, LED15, LED16, LED17, LED18, LED19, LED20, LED21, LED22, LED23, LED24, LED25, LED26, LED27, LED28, LED29, LED30, LED31, LED32, LED33, LED34, LED35, LED36",SFH4725ASA01,36,25,90,SFH_4725AS_A01,Mouser,720-SFH4725ASAA0273 ,2.47,222.3,https://www.mouser.de/en/ProductDetail/ams-OSRAM/SFH-4725AS-A01
+,,,,,,0,,,,,,
+cable / switch,,,,,,0,,,,,,
+control → LED_panel,1,,,1,0,2,PicoBlade 8 positions female/female,Mouser,538-15134-0801 ,5.99,11.98,https://www.mouser.de/en/ProductDetail/Molex/15134-0801
+control → LED_panel,2,,,4,0,8,MicroFit3.0 2 positions female/female,Mouser,538-214750-1021 ,2.19,17.52,https://www.mouser.de/en/ProductDetail/Molex/214750-1021
+control → rotary_encoder,1,,,1,0,2,KK 4 positions female/female,Mouser,538-217796-1042 ,3.08,6.16,https://www.mouser.de/en/ProductDetail/Molex/217796-1042
+control → switch,1,,,1,0,2,KK 2 positions female/pigtail,Mouser,538-217797-1023,1.94,3.88,https://www.mouser.de/en/ProductDetail/Molex/217797-1023
+control → camera,1,,,1,0,2,KK 2 positions female/pigtail,Mouser,538-217797-1023,1.94,3.88,https://www.mouser.de/en/ProductDetail/Molex/217797-1023
+control → status_LED,1,,,1,0,2,KK 5 positions female/female,Mouser,538-217796-1052 ,2.67,5.34,https://www.mouser.de/en/ProductDetail/Molex/217796-1052
+switch,1,,,1,0,2,SPST cam trigger switch PM,Mouser,633-MN11S2A1W01 ,5.19,10.38,https://www.mouser.de/en/ProductDetail/NKK-Switches/MN11S2A1W01
+,,,,,,,,,,,,
+extra,,,,,,,,,,,,
+solder paste,,,,1,0,1,"Lead free, Sn96.5/Ag03/Cu0.5",Mouser,910-SMD291SNL10T5,32.01,32.01,https://www.mouser.de/en/ProductDetail/Chip-Quik/SMD291SNL10T5
+,,,,,,,,,,,,
+TOTAL,,,,,,,,,,,547.422,

@@ -1,0 +1,4 @@
+"Id";"Designator";"Footprint";"Quantity";"Designation";"Supplier and ref";
+1;"D1, D2, D3, D4";"LED_D5.0mm";4;"LED";;;
+2;"H1, H2";"MountingHole_2.2mm_M2";2;"MountingHole";;;
+3;"J1";"Molex_KK-254_AE-6410-05A_1x05_P2.54mm_Vertical";1;"Conn_01x05_Pin";;;

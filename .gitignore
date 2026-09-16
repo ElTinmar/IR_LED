@@ -34,10 +34,6 @@ sym-lib-table
 *.dsn
 *.ses
 
-# Exported BOM files
-*.xml
-*.csv
-
 # Archived Backups (KiCad 6.0)
 **/*-backups/*.zip
 
