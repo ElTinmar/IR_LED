@@ -3,16 +3,21 @@ Python driver for the Arduino LED Panel Controller.
 
 Protocol (newline-terminated ASCII lines over serial, 115200 baud 8N1):
 
-    Host -> Board                Board -> Host
-    -------------                -------------
-    ID                       ->  RSP:ID,<device_type>,<fw_version>,<unique_id>
-    SET_FAN:<0-100>          ->  RSP:FAN,<value>
-    SET_DAC:<1-3>,<0-4095>   ->  RSP:DAC_SET,<channel>,<value>
-    GET_DAC                 ->  RSP:DAC_VALS,<v1>,<v2>,<v3>
-    GET_TEMP                ->  RSP:TMP,<float>
-    (unsolicited, encoder)  ->  CH:<n>,VAL:<v>,SAT:<0|1>,MOCK:<0|1>
-    (boot)                  ->  SYS:BOOTING... / SYS:READY / WARN:...
-    (any error)             ->  ERR:<reason>
+    Host -> Board                    Board -> Host
+    --------------                   -------------
+    ID                           ->  RSP:ID,<device_type>,<fw_version>,<unique_id>
+    SET_FAN:<0-100>              ->  RSP:FAN,<value>   (or ERR:PID_ACTIVE)
+    SET_DAC:<1-3>,<0-4095>       ->  RSP:DAC_SET,<channel>,<value>
+    GET_DAC                      ->  RSP:DAC_VALS,<v1>,<v2>,<v3>
+    GET_TEMP                     ->  RSP:TMP,<float>
+    SET_PID_MODE:<0|1>           ->  RSP:PID_MODE,<0|1>
+    SET_PID_SETPOINT:<degC>      ->  RSP:PID_SETPOINT,<value>
+    SET_PID_GAINS:<kp>,<ki>,<kd> ->  RSP:PID_GAINS,<kp>,<ki>,<kd>
+    GET_PID                      ->  RSP:PID_STATE,<mode>,<sp>,<kp>,<ki>,<kd>,<fan>,<temp>
+    (unsolicited, encoder)       ->  CH:<n>,VAL:<v>,SAT:<0|1>,MOCK:<0|1>
+    (unsolicited, ~1Hz, PID on)  ->  PID:TEMP:<t>,FAN:<d>,SP:<sp>,MODE:<0|1>
+    (boot)                       ->  SYS:BOOTING... / SYS:READY / WARN:...
+    (any error)                  ->  ERR:<reason>
 """
 
 from __future__ import annotations
@@ -73,6 +78,18 @@ class LEDPanelInfo:
         return self.ledpanel_cls(*self.args, **self.kwargs)
 
 
+@dataclass
+class PIDState:
+    """Snapshot of the board's PID controller, as returned by GET_PID."""
+    enabled: bool
+    setpoint: float
+    kp: float
+    ki: float
+    kd: float
+    fan_duty: int
+    temperature: float
+
+
 # ============================================================== #
 # Abstract interface
 # ============================================================== #
@@ -123,7 +140,21 @@ class SerialLEDPanel(LEDPanel):
     _RSP_DAC_VALS = re.compile(r"RSP:DAC_VALS,(\d+),(\d+),(\d+)")
     _RSP_FAN = re.compile(r"RSP:FAN,(\d+)")
     _RSP_TMP = re.compile(r"RSP:TMP,([\-0-9.]+)")
+
+    _RSP_PID_MODE = re.compile(r"RSP:PID_MODE,([01])")
+    _RSP_PID_SETPOINT = re.compile(r"RSP:PID_SETPOINT,([\-0-9.]+)")
+    _RSP_PID_GAINS = re.compile(
+        r"RSP:PID_GAINS,([\-0-9.]+),([\-0-9.]+),([\-0-9.]+)"
+    )
+    _RSP_PID_STATE = re.compile(
+        r"RSP:PID_STATE,([01]),([\-0-9.]+),([\-0-9.]+),([\-0-9.]+),"
+        r"([\-0-9.]+),(\d+),([\-0-9.]+)"
+    )
+
     _TELEMETRY = re.compile(r"CH:(\d+),VAL:(\d+),SAT:([01]),MOCK:([01])")
+    _PID_TELEMETRY = re.compile(
+        r"PID:TEMP:([\-0-9.]+),FAN:(\d+),SP:([\-0-9.]+),MODE:([01])"
+    )
 
     def __init__(
         self,
@@ -170,6 +201,7 @@ class SerialLEDPanel(LEDPanel):
         self._send_lock = threading.Lock()
 
         self._telemetry_callback: Optional[Callable[[Dict[str, Any]], None]] = None
+        self._pid_telemetry_callback: Optional[Callable[[Dict[str, Any]], None]] = None
         self._log_callback: Optional[Callable[[str], None]] = None
 
         # cache, updated whenever we successfully talk to the board
@@ -183,6 +215,9 @@ class SerialLEDPanel(LEDPanel):
     # ---------------------------------------------------------- #
     def set_telemetry_callback(self, cb: Optional[Callable[[Dict[str, Any]], None]]):
         self._telemetry_callback = cb
+
+    def set_pid_telemetry_callback(self, cb: Optional[Callable[[Dict[str, Any]], None]]):
+        self._pid_telemetry_callback = cb
 
     def set_log_callback(self, cb: Optional[Callable[[str], None]]):
         self._log_callback = cb
@@ -284,6 +319,8 @@ class SerialLEDPanel(LEDPanel):
                 self._response_queue.put(line)
             elif line.startswith("CH:"):
                 self._handle_telemetry(line)
+            elif line.startswith("PID:"):
+                self._handle_pid_telemetry(line)
             elif line == "SYS:READY":
                 self._ready_event.set()
                 self._log(line)
@@ -304,6 +341,20 @@ class SerialLEDPanel(LEDPanel):
         self.mock_active = data["mock"]
         if self._telemetry_callback:
             self._telemetry_callback(data)
+
+    def _handle_pid_telemetry(self, line: str):
+        m = self._PID_TELEMETRY.match(line)
+        if not m:
+            self._log(f"Unparsed PID telemetry: {line}")
+            return
+        data = {
+            "temperature": float(m.group(1)),
+            "fan_duty": int(m.group(2)),
+            "setpoint": float(m.group(3)),
+            "enabled": bool(int(m.group(4))),
+        }
+        if self._pid_telemetry_callback:
+            self._pid_telemetry_callback(data)
 
     # ---------------------------------------------------------- #
     # Low-level command/response
@@ -345,7 +396,7 @@ class SerialLEDPanel(LEDPanel):
         return LEDPanelIdentity(device_type, fw_version, unique_id, self.port)
 
     # ---------------------------------------------------------- #
-    # High-level API
+    # High-level API: DAC / fan / temperature
     # ---------------------------------------------------------- #
     def set_fan_percent(self, percent: int) -> int:
         percent = int(max(0, min(100, percent)))
@@ -396,6 +447,45 @@ class SerialLEDPanel(LEDPanel):
             raw = int(round(max(0.0, min(1.0, b)) * 4095))
             values.append(self.set_dac_raw(ch, raw))
         return values
+
+    # ---------------------------------------------------------- #
+    # High-level API: temperature PID controller
+    # ---------------------------------------------------------- #
+    def set_pid_mode(self, enabled: bool) -> bool:
+        resp = self._send_command(f"SET_PID_MODE:{1 if enabled else 0}")
+        m = self._RSP_PID_MODE.match(resp)
+        if not m:
+            raise LEDCommandError(f"Unexpected response: {resp}")
+        return bool(int(m.group(1)))
+
+    def set_pid_setpoint(self, setpoint_degC: float) -> float:
+        resp = self._send_command(f"SET_PID_SETPOINT:{float(setpoint_degC):.2f}")
+        m = self._RSP_PID_SETPOINT.match(resp)
+        if not m:
+            raise LEDCommandError(f"Unexpected response: {resp}")
+        return float(m.group(1))
+
+    def set_pid_gains(self, kp: float, ki: float, kd: float) -> Tuple[float, float, float]:
+        resp = self._send_command(f"SET_PID_GAINS:{kp:.4f},{ki:.4f},{kd:.4f}")
+        m = self._RSP_PID_GAINS.match(resp)
+        if not m:
+            raise LEDCommandError(f"Unexpected response: {resp}")
+        return (float(m.group(1)), float(m.group(2)), float(m.group(3)))
+
+    def get_pid_state(self) -> PIDState:
+        resp = self._send_command("GET_PID")
+        m = self._RSP_PID_STATE.match(resp)
+        if not m:
+            raise LEDCommandError(f"Unexpected response: {resp}")
+        return PIDState(
+            enabled=bool(int(m.group(1))),
+            setpoint=float(m.group(2)),
+            kp=float(m.group(3)),
+            ki=float(m.group(4)),
+            kd=float(m.group(5)),
+            fan_duty=int(m.group(6)),
+            temperature=float(m.group(7)),
+        )
 
     # ---------------------------------------------------------- #
     # Discovery: probe every serial port for the ID handshake
