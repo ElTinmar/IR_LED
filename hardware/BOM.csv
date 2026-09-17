@@ -36,12 +36,12 @@ LED_panel,5,J2,Molex_PicoBlade_53261-0871_1x08-1MP_P1.25mm_Horizontal,1,100,4,Co
 LED_panel,6,"LED1, LED2, LED3, LED4, LED5, LED6, LED7, LED8, LED9, LED10, LED11, LED12, LED13, LED14, LED15, LED16, LED17, LED18, LED19, LED20, LED21, LED22, LED23, LED24, LED25, LED26, LED27, LED28, LED29, LED30, LED31, LED32, LED33, LED34, LED35, LED36",SFH4725ASA01,36,25,90,SFH_4725AS_A01,Mouser,720-SFH4725ASAA0273,2.47,222.3,https://www.mouser.de/en/ProductDetail/ams-OSRAM/SFH-4725AS-A01
 ,,,,,,0,,,,,,
 cables,,,,,,0,,,,,,
-control → LED_panel,1,,,1,0,2,PicoBlade 8 positions female/female,Mouser,538-15134-0801,5.99,11.98,https://www.mouser.de/en/ProductDetail/Molex/15134-0801
-control → LED_panel,2,,,4,0,8,MicroFit3.0 2 positions female/female,Mouser,538-214750-1021,2.19,17.52,https://www.mouser.de/en/ProductDetail/Molex/214750-1021
-control → rotary_encoder,1,,,1,0,2,KK 4 positions female/female,Mouser,538-217796-1042,3.08,6.16,https://www.mouser.de/en/ProductDetail/Molex/217796-1042
-control → switch,1,,,1,0,2,KK 2 positions female/pigtail,Mouser,538-217797-1023,1.94,3.88,https://www.mouser.de/en/ProductDetail/Molex/217797-1023
-control → camera,1,,,1,0,2,KK 2 positions female/pigtail,Mouser,538-217797-1023,1.94,3.88,https://www.mouser.de/en/ProductDetail/Molex/217797-1023
-control → status_LED,1,,,1,0,2,KK 5 positions female/female,Mouser,538-217796-1052,2.67,5.34,https://www.mouser.de/en/ProductDetail/Molex/217796-1052
+Control : LED_panel,1,,,1,0,2,PicoBlade 8 positions female/female,Mouser,538-15134-0801,5.99,11.98,https://www.mouser.de/en/ProductDetail/Molex/15134-0801
+Control :�� LED_panel,2,,,4,0,8,MicroFit3.0 2 positions female/female,Mouser,538-214750-1021,2.19,17.52,https://www.mouser.de/en/ProductDetail/Molex/214750-1021
+Control : rotary_encoder,1,,,1,0,2,KK 4 positions female/female,Mouser,538-217796-1042,3.08,6.16,https://www.mouser.de/en/ProductDetail/Molex/217796-1042
+Control : switch,1,,,1,0,2,KK 2 positions female/pigtail,Mouser,538-217797-1023,1.94,3.88,https://www.mouser.de/en/ProductDetail/Molex/217797-1023
+Control : camera,1,,,1,0,2,KK 2 positions female/pigtail,Mouser,538-217797-1023,1.94,3.88,https://www.mouser.de/en/ProductDetail/Molex/217797-1023
+Control : status_LED,1,,,1,0,2,KK 5 positions female/female,Mouser,538-217796-1052,2.67,5.34,https://www.mouser.de/en/ProductDetail/Molex/217796-1052
 ,,,,,,,,,,,,
 other components,,,,,,,,,,,,
 switch,1,,,1,0,2,SPST cam trigger switch PM,Mouser,633-MN11S2A1W01,5.19,10.38,https://www.mouser.de/en/ProductDetail/NKK-Switches/MN11S2A1W01
@@ -49,6 +49,6 @@ PSU,2,,,1,0,2,MeanWell ,,,,,
 ,,,,,,,,,,,,
 extra,,,,,,,,,,,,
 solder paste,,,,1,0,1,"Lead free, Sn96.5/Ag03/Cu0.5",Mouser,910-SMD291SNL10T5,32.01,32.01,https://www.mouser.de/en/ProductDetail/Chip-Quik/SMD291SNL10T5
-,,,,1,0,2,MeanWell HEP-240-48,Mouser,709-HEP240-48A,90.99,181.98,https://www.mouser.de/ProductDetail/MEAN-WELL/HEP-240-48A
+,,,,1,0,2,MeanWell HEP-240-48,Digikey,1866-2274-ND,90.7,181.4,https://www.digikey.de/de/products/detail/mean-well-usa-inc/HEP-240-48A/7703829
 ,,,,,,,,,,,,
 TOTAL,,,,,,,,,,,729.41,
