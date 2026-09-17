@@ -548,7 +548,7 @@
       "netlist": "",
       "plot": "",
       "specctra_dsn": "",
-      "step": "IR_control_smart.step",
+      "step": "control.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""
