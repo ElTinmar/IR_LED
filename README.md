@@ -12,6 +12,7 @@ which significantly reduces heat output
 - the temperature of the LED panel is measured in real time and can by controlled with a fan. 
 The fan PWM can be set manually or via a software PID controller on the arduino
 
+![Control Board Schematic](hardware/control/control.png)
 
 ## hardware
 
