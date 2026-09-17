@@ -37,7 +37,7 @@ LED_panel,6,"LED1, LED2, LED3, LED4, LED5, LED6, LED7, LED8, LED9, LED10, LED11,
 ,,,,,,0,,,,,,
 cables,,,,,,0,,,,,,
 Control : LED_panel,1,,,1,0,2,PicoBlade 8 positions female/female,Mouser,538-15134-0801,5.99,11.98,https://www.mouser.de/en/ProductDetail/Molex/15134-0801
-Control :†’ LED_panel,2,,,4,0,8,MicroFit3.0 2 positions female/female,Mouser,538-214750-1021,2.19,17.52,https://www.mouser.de/en/ProductDetail/Molex/214750-1021
+Control : LED_panel,2,,,4,0,8,MicroFit3.0 2 positions female/female,Mouser,538-214750-1021,2.19,17.52,https://www.mouser.de/en/ProductDetail/Molex/214750-1021
 Control : rotary_encoder,1,,,1,0,2,KK 4 positions female/female,Mouser,538-217796-1042,3.08,6.16,https://www.mouser.de/en/ProductDetail/Molex/217796-1042
 Control : switch,1,,,1,0,2,KK 2 positions female/pigtail,Mouser,538-217797-1023,1.94,3.88,https://www.mouser.de/en/ProductDetail/Molex/217797-1023
 Control : camera,1,,,1,0,2,KK 2 positions female/pigtail,Mouser,538-217797-1023,1.94,3.88,https://www.mouser.de/en/ProductDetail/Molex/217797-1023
@@ -45,7 +45,7 @@ Control : status_LED,1,,,1,0,2,KK 5 positions female/female,Mouser,538-217796-10
 ,,,,,,,,,,,,
 other components,,,,,,,,,,,,
 switch,1,,,1,0,2,SPST cam trigger switch PM,Mouser,633-MN11S2A1W01,5.19,10.38,https://www.mouser.de/en/ProductDetail/NKK-Switches/MN11S2A1W01
-PSU,2,,,1,0,2,MeanWell ,,,,,
+PSU,2,,,1,0,2,MeanWell,,,,,
 ,,,,,,,,,,,,
 extra,,,,,,,,,,,,
 solder paste,,,,1,0,1,"Lead free, Sn96.5/Ag03/Cu0.5",Mouser,910-SMD291SNL10T5,32.01,32.01,https://www.mouser.de/en/ProductDetail/Chip-Quik/SMD291SNL10T5
